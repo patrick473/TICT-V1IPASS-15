@@ -4,22 +4,23 @@ import java.sql.Date;
 
 public class Gebruiker {
 
-	private Integer gebruikersID;
+	private int gebruikersID;
 	private String gebruikersNaam;
 	private String voorNaam;
 	private String tussenVoegsel;
 	private String achterNaam;
 	private String adres ;
-	private String postcCode;
+	private String postCode;
+	private String plaatsNaam;
 	private String land;
 	private Date geboorteDag;
 	private String email;
-	private Integer telefoonNummer;
+	private int telefoonNummer;
 	private String wachtWoord;
 	private Boolean kanVerkopen;
 	private String bankNummer;
 	public Gebruiker(Integer gebruikersID, String gebruikersNaam, String voorNaam, String tussenVoegsel,
-			String achterNaam, String adres, String postcCode, String land, Date geboorteDag, String email,
+			String achterNaam, String adres, String postcCode,String plaatsNaam, String land, Date geboorteDag, String email,
 			Integer telefoonNummer, String wachtWoord, Boolean kanVerkopen, String bankNummer) {
 		super();
 		this.gebruikersID = gebruikersID;
@@ -28,7 +29,8 @@ public class Gebruiker {
 		this.tussenVoegsel = tussenVoegsel;
 		this.achterNaam = achterNaam;
 		this.adres = adres;
-		this.postcCode = postcCode;
+		this.postCode = postcCode;
+		this.plaatsNaam = plaatsNaam;
 		this.land = land;
 		this.geboorteDag = geboorteDag;
 		this.email = email;
@@ -37,10 +39,10 @@ public class Gebruiker {
 		this.kanVerkopen = kanVerkopen;
 		this.bankNummer = bankNummer;
 	}
-	public Integer getGebruikersID() {
+	public int getGebruikersID() {
 		return gebruikersID;
 	}
-	public void setGebruikersID(Integer gebruikersID) {
+	public void setGebruikersID(int gebruikersID) {
 		this.gebruikersID = gebruikersID;
 	}
 	public String getGebruikersNaam() {
@@ -97,10 +99,10 @@ public class Gebruiker {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Integer getTelefoonNummer() {
+	public int getTelefoonNummer() {
 		return telefoonNummer;
 	}
-	public void setTelefoonNummer(Integer telefoonNummer) {
+	public void setTelefoonNummer(int telefoonNummer) {
 		this.telefoonNummer = telefoonNummer;
 	}
 	public String getWachtWoord() {

@@ -9,7 +9,15 @@ public class Bod {
 	private double bodBedrag;
 	private Integer gebruiker;
 	private Timestamp bodTijd;
-	public Bod(Integer bodID, Integer voorwerpID, Integer bodBedrag, Integer gebruiker, Timestamp bodTijd) {
+	
+	public Bod(Integer voorwerpID, double bodBedrag, Integer gebruiker, Timestamp bodTijd) {
+		super();
+		this.voorwerpID = voorwerpID;
+		this.bodBedrag = bodBedrag;
+		this.gebruiker = gebruiker;
+		this.bodTijd = bodTijd;
+	}
+	public Bod(Integer bodID, Integer voorwerpID, double bodBedrag, Integer gebruiker, Timestamp bodTijd) {
 		super();
 		this.bodID = bodID;
 		this.voorwerpID = voorwerpID;
