@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import model.Gebruiker;
 
 public class GebruikerDAO extends BaseDAO{
-	private ArrayList<Gebruiker> selectGebruikeren(String query){
+	private ArrayList<Gebruiker> selectGebruikers(String query){
 		ArrayList<Gebruiker> gebruikers = new ArrayList<Gebruiker>();
 		try(Connection con = super.connect()){
 			Statement stmt = con.createStatement();
@@ -54,11 +54,11 @@ public class GebruikerDAO extends BaseDAO{
 	}
 
 public ArrayList<Gebruiker> selectAll() {
-	return selectGebruikeren("SELECT * FROM gebruiker");
+	return selectGebruikers("SELECT * FROM gebruiker");
 }
 
 public Gebruiker findByCode(int id) {
-	return selectGebruikeren("SELECT * FROM Gebruiker WHERE Gebruikersid = " + id + "").get(0);
+	return selectGebruikers("SELECT * FROM Gebruiker WHERE Gebruikersid = " + id + "").get(0);
 }
 
 public Gebruiker update(Gebruiker b) {

@@ -12,14 +12,17 @@ public class Voorwerp {
 	private Timestamp beginTijd;
 	private Timestamp eindTijd;
 	private double verzendkosten;
-	private double verzendinstructie;
+	private String verzendinstructie;
 	private Integer verkoper;
 	private Integer koper;
 	private boolean veilingGesloten;
+	private double verkoopprijs;
 	private Integer rubriek;
+	
+	
 	public Voorwerp(Integer voorwerpNummer, String titel, String beschrijving, double startPrijs, String betalingswijze,
-			Timestamp beginTijd, Timestamp eindTijd, double verzendkosten, double verzendinstructie, Integer verkoper,
-			Integer koper, boolean veilingGesloten, Integer rubriek) {
+			Timestamp beginTijd, Timestamp eindTijd, double verzendkosten, String verzendinstructie, Integer verkoper,
+			Integer koper, boolean veilingGesloten, double verkoopprijs, Integer rubriek) {
 		super();
 		this.voorwerpNummer = voorwerpNummer;
 		this.titel = titel;
@@ -33,7 +36,14 @@ public class Voorwerp {
 		this.verkoper = verkoper;
 		this.koper = koper;
 		this.veilingGesloten = veilingGesloten;
+		this.verkoopprijs = verkoopprijs;
 		this.rubriek = rubriek;
+	}
+	public double getVerkoopprijs() {
+		return verkoopprijs;
+	}
+	public void setVerkoopprijs(double verkoopprijs) {
+		this.verkoopprijs = verkoopprijs;
 	}
 	public Integer getVoorwerpNummer() {
 		return voorwerpNummer;
@@ -83,10 +93,10 @@ public class Voorwerp {
 	public void setVerzendkosten(double verzendkosten) {
 		this.verzendkosten = verzendkosten;
 	}
-	public double getVerzendinstructie() {
+	public String getVerzendinstructie() {
 		return verzendinstructie;
 	}
-	public void setVerzendinstructie(double verzendinstructie) {
+	public void setVerzendinstructie(String verzendinstructie) {
 		this.verzendinstructie = verzendinstructie;
 	}
 	public Integer getVerkoper() {
