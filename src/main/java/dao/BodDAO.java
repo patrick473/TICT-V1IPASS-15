@@ -41,6 +41,9 @@ public ArrayList<Bod> selectAll() {
 public Bod findByCode(int id) {
 	return selectBoden("SELECT * FROM bod WHERE bodid = " + id + "").get(0);
 }
+public ArrayList<Bod> findByVoorwerp(int id) {
+	return selectBoden("SELECT * FROM bod WHERE voorwerp = " + id + "");
+}
 public Bod insert(Bod b) {
 	try (Connection con = super.connect()) {
 		PreparedStatement stmt = con.prepareStatement(

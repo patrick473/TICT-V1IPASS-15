@@ -116,5 +116,23 @@ public class VoorwerpDAO extends BaseDAO{
 		
 		return findByCode(b.getVoorwerpNummer());
 	}
+
+	public boolean delete(int id){
+		
+		try(Connection con = super.connect()){
+			Statement stmt = con.createStatement();
+			
+			String query = "delete from bod where voorwerp= "+id+"";
+			stmt.executeUpdate(query);
+			 query = "delete from voorwerp  where voorwerpnummer="+id+"";
+			stmt.executeUpdate(query);
+			return true;}
+			catch (SQLException sqle){
+				sqle.printStackTrace();
+				return false;
+				
+			}
+	}
+	
 	}
 
