@@ -19,6 +19,26 @@ public class Gebruiker {
 	private String wachtWoord;
 	private Boolean kanVerkopen;
 	private String bankNummer;
+	
+	public Gebruiker(String gebruikersNaam, String voorNaam, String tussenVoegsel, String achterNaam, String adres,
+			String postCode, String plaatsNaam, String land, Date geboorteDag, String email, int telefoonNummer,
+			String wachtWoord, Boolean kanVerkopen, String bankNummer) {
+		super();
+		this.gebruikersNaam = gebruikersNaam;
+		this.voorNaam = voorNaam;
+		this.tussenVoegsel = tussenVoegsel;
+		this.achterNaam = achterNaam;
+		this.adres = adres;
+		this.postCode = postCode;
+		this.plaatsNaam = plaatsNaam;
+		this.land = land;
+		this.geboorteDag = geboorteDag;
+		this.email = email;
+		this.telefoonNummer = telefoonNummer;
+		this.wachtWoord = wachtWoord;
+		this.kanVerkopen = kanVerkopen;
+		this.bankNummer = bankNummer;
+	}
 	public Gebruiker(Integer gebruikersID, String gebruikersNaam, String voorNaam, String tussenVoegsel,
 			String achterNaam, String adres, String postcCode,String plaatsNaam, String land, Date geboorteDag, String email,
 			Integer telefoonNummer, String wachtWoord, Boolean kanVerkopen, String bankNummer) {
@@ -75,11 +95,18 @@ public class Gebruiker {
 	public void setAdres(String adres) {
 		this.adres = adres;
 	}
-	public String getPostcCode() {
-		return postcCode;
+	public String getPostCode() {
+		return postCode;
 	}
-	public void setPostcCode(String postcCode) {
-		this.postcCode = postcCode;
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
+	
+	public String getPlaatsNaam() {
+		return plaatsNaam;
+	}
+	public void setPlaatsNaam(String plaatsNaam) {
+		this.plaatsNaam = plaatsNaam;
 	}
 	public String getLand() {
 		return land;
@@ -127,10 +154,10 @@ public class Gebruiker {
 	public String toString() {
 		return "Gebruiker [gebruikersID=" + gebruikersID + ", gebruikersNaam=" + gebruikersNaam + ", voorNaam="
 				+ voorNaam + ", tussenVoegsel=" + tussenVoegsel + ", achterNaam=" + achterNaam + ", adres=" + adres
-				+ ", postcCode=" + postcCode + ", land=" + land + ", geboorteDag=" + geboorteDag + ", email=" + email
-				+ ", telefoonNummer=" + telefoonNummer + ", wachtWoord=" + wachtWoord + ", kanVerkopen=" + kanVerkopen
-				+ ", bankNummer=" + bankNummer + "]";
+				+ ", postCode=" + postCode + ", plaatsNaam=" + plaatsNaam + ", land=" + land + ", geboorteDag="
+				+ geboorteDag + ", email=" + email + ", telefoonNummer=" + telefoonNummer + ", wachtWoord=" + wachtWoord
+				+ ", kanVerkopen=" + kanVerkopen + ", bankNummer=" + bankNummer + "]";
 	}
-	
+
 	
 }

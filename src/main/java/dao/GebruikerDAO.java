@@ -2,11 +2,11 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import model.Gebruiker;
 
@@ -43,6 +43,8 @@ public class GebruikerDAO extends BaseDAO{
 		}
 		
 		Gebruiker gebruiker = new Gebruiker(gebruikersId,gebruikersnaam,voornaam,tussenvoegsel,achternaam,adres,postcode,plaatsnaam,land,geboortedag,email,telefoonNummer,wachtwoord,kanVerkopen,bankNummer);
+	
+		gebruikers.add(gebruiker);
 	}
 		}
 	catch(SQLException e){
@@ -52,24 +54,31 @@ public class GebruikerDAO extends BaseDAO{
 	}
 
 public ArrayList<Gebruiker> selectAll() {
-	return selectGebruikeren("SELECT * FROM Gebruiker");
+	return selectGebruikeren("SELECT * FROM gebruiker");
 }
 
 public Gebruiker findByCode(int id) {
-	return selectGebruikeren("SELECT * FROM Gebruiker WHERE Gebruikerid = " + id + "").get(0);
+	return selectGebruikeren("SELECT * FROM Gebruiker WHERE Gebruikersid = " + id + "").get(0);
 }
 
 public Gebruiker update(Gebruiker b) {
 	try (Connection con = super.connect()) {
-		Statement stmt = con.createStatement();
-		String query = "UPDATE medewerkers SET mnr=" + m.getMnr()
-				+ ", naam='" + m.getNaam() + "',voorl='"
-				+ m.getVoorl() + "', functie='" + m.getFunctie()
-				+ "', chef=" + m.getChef() + ", gbdatum=to_date('"+
-				m.getGbdatum() +"','DD-Mon-YY'), maandsal="+m.getMaandsal()
-				+ ",comm= "+m.getComm()+", afd="+m.getAfd()+", geslacht='"+m.getGeslacht()
-				+ "' WHERE mnr = "+ m.getMnr();
-		stmt.executeUpdate(query);
+		PreparedStatement stmt = con.prepareStatement(
+				"update gebruiker "+
+"set gebruikersnaam='"+b.getGebruikersNaam()+"',tussenvoegsel='"+b.getTussenVoegsel()+"',achternaam='"+b.getAchterNaam()+"',"
++ "adres='"+b.getAdres()+"',postcode='"+b.getPostCode()+"',plaatsnaam='"+b.getPlaatsNaam()+"',land='"+b.getLand()+"',geboortedag=?,"
++ "email='"+b.getEmail()+"',telefoonnummer="+b.getTelefoonNummer()+",wachtwoord='"+b.getWachtWoord()+"',kanVerkopen=?,banknummer='"+b.getBankNummer()+"' where gebruikersid="+b.getGebruikersID()+"");
+		
+		stmt.setDate(1, b.getGeboorteDag());
+		
+		if(b.getKanVerkopen() == true){
+			stmt.setInt(2, 1);
+		}
+		else{
+			stmt.setInt(2, 0);
+		}
+		stmt.executeUpdate();
+		
 		
 	} catch (SQLException sqle) {
 		sqle.printStackTrace();
@@ -78,42 +87,25 @@ public Gebruiker update(Gebruiker b) {
 	return findByCode(b.getGebruikersID());
 }
 
-public boolean delete(Gebruiker b) {
-	try (Connection con = super.connect()) {
-		Statement stmt = con.createStatement();
-		String query = "update afdelingen "
-				+ "set hoofd=null "
-				+ "where hoofd="+m.getMnr()+" ";
-		stmt.executeUpdate(query);
-		query = "DELETE FROM historie WHERE mnr=" + m.getMnr() + "";
-		stmt.executeUpdate(query);
-		query = "delete from inschrijvingen where cursist="+m.getMnr();
-		stmt.executeUpdate(query);
-		query ="update uitvoeringen "
-				+ "set docent=null "
-				+ "where docent= "+m.getMnr()+" ";
-		stmt.executeUpdate(query);
-		query ="delete from medewerkers where mnr="+m.getMnr()+" ";
-		return true;
-		
-	} catch (SQLException sqle) {
-		sqle.printStackTrace();
-		return false;
-	}
-}
 
 public Gebruiker insert(Gebruiker b) {
 	try (Connection con = super.connect()) {
-		Statement stmt = con.createStatement();
-		String query = "INSERT INTO medewerkers"
-				+ "(mnr,naam,voorl,functie,chef,gbdatum,maandsal,comm,afd,geslacht) "
-				+ "VALUES (" + m.getMnr()
-				+ ", '" + m.getNaam() + "','"
-				+ m.getVoorl() + "', '" + m.getFunctie()
-				+ "', " + m.getChef() + ", to_date('"+
-				m.getGbdatum() +"','DD-Mon-YY'), "+m.getMaandsal()
-				+ ", "+m.getComm()+", "+m.getAfd()+", '"+m.getGeslacht()+"')";
-		stmt.executeUpdate(query);
+		PreparedStatement stmt = con.prepareStatement(
+				"insert into gebruiker"
+				+ " values(gebruiker_sequence.nextval,'"+b.getGebruikersNaam()+"','"+b.getVoorNaam()+"'"
+						+ ",'"+b.getTussenVoegsel()+"','"+b.getAchterNaam()+"','"+b.getAdres()+"'"
+								+ ",'"+b.getPostCode()+"','"+b.getPlaatsNaam()+"','"+b.getLand()+"',?,"
+										+ "'"+b.getEmail()+"',"+b.getTelefoonNummer()+",'"+b.getWachtWoord()+""
+												+ "',?,'"+b.getBankNummer()+"')");
+		
+		stmt.setDate(1, b.getGeboorteDag());
+		if(b.getKanVerkopen() == true){
+			stmt.setInt(2, 1);
+		}
+		else{
+			stmt.setInt(2, 0);
+		}
+		stmt.executeUpdate();
 		
 	} catch (SQLException sqle) {
 		sqle.printStackTrace();
