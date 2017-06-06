@@ -79,7 +79,7 @@ for (Gebruiker g: gdao.selectAll()){
 	
 	@PUT
 	@RolesAllowed({"gebruiker","verkoper"})
-	@Path("/{id}")
+	@Path("/{id}/{kanverkopen}")
 	@Produces("application/json")
 	public String updateGebruiker(@PathParam("id")int id,@FormParam("gebruikersnaam")String gebruikersnaam,
 			@FormParam("voornaam")String voornaam,
@@ -87,7 +87,7 @@ for (Gebruiker g: gdao.selectAll()){
 			@FormParam("adres")String adres,@FormParam("postcode")String postcode,@FormParam("plaatsnaam")String plaatsnaam,
 			@FormParam("land")String land,@FormParam("geboortedag")Date geboortedag,@FormParam("email")String email,
 			@FormParam("telefoonnummer")int telefoonnummer,
-			@FormParam("kanverkopen")boolean kanverkopen,@FormParam("banknummer")String banknummer){
+			@PathParam("kanverkopen")boolean kanverkopen,@FormParam("banknummer")String banknummer){
 		
 		Gebruiker g = new Gebruiker(id,gebruikersnaam,voornaam,tussenvoegsel,achternaam,adres,postcode,
 				plaatsnaam,land,geboortedag,email,telefoonnummer,kanverkopen,banknummer);
@@ -106,14 +106,14 @@ for (Gebruiker g: gdao.selectAll()){
 	}
 	@POST
 	@RolesAllowed({"gebruiker","verkoper"})
-	@Path("/new")
+	@Path("/new/{kanverkopen}")
 	@Produces("application/json")
 	public String newGebruiker(@FormParam("gebruikersnaam")String gebruikersnaam,@FormParam("voornaam")String voornaam,
 			@FormParam("tussenvoegsel")String tussenvoegsel,@FormParam("achternaam")String achternaam,
 			@FormParam("adres")String adres,@FormParam("postcode")String postcode,@FormParam("plaatsnaam")String plaatsnaam,
 			@FormParam("land")String land,@FormParam("geboortedag")Date geboortedag,@FormParam("email")String email,
 			@FormParam("telefoonnummer")int telefoonnummer,@FormParam("wachtwoord")String wachtwoord,
-			@FormParam("kanverkopen")boolean kanverkopen,@FormParam("banknummer")String banknummer){
+			@PathParam("kanverkopen")boolean kanverkopen,@FormParam("banknummer")String banknummer){
 	
 		Gebruiker g = new Gebruiker(gebruikersnaam,voornaam,tussenvoegsel,achternaam,adres,postcode,
 				plaatsnaam,land,geboortedag,email,telefoonnummer,wachtwoord,kanverkopen,banknummer);
