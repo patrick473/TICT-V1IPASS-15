@@ -39,7 +39,7 @@ public class RubriekDAO extends BaseDAO{
 	public ArrayList<Rubriek> selectBovensteRubriek(){
 		return selectRubrieken("select * from rubriek where inrubriek is null");
 	}
-	public ArrayList<Rubriek> selectBovensteRubriek(int id){
+	public ArrayList<Rubriek> selectRubriekenInRubriek(int id){
 		return selectRubrieken("select * from rubriek where inrubriek ="+id+"");
 	}
 }
