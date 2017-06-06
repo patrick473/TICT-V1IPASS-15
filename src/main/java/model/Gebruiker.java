@@ -20,6 +20,33 @@ public class Gebruiker {
 	private Boolean kanVerkopen;
 	private String bankNummer;
 	
+	
+	public Gebruiker(int gebruikersID, String wachtWoord) {
+		super();
+		this.gebruikersID = gebruikersID;
+		this.wachtWoord = wachtWoord;
+	}
+
+	public Gebruiker(int gebruikersID, String gebruikersNaam, String voorNaam, String tussenVoegsel, String achterNaam,
+			String adres, String postCode, String plaatsNaam, String land, Date geboorteDag, String email,
+			int telefoonNummer, Boolean kanVerkopen, String bankNummer) {
+		super();
+		this.gebruikersID = gebruikersID;
+		this.gebruikersNaam = gebruikersNaam;
+		this.voorNaam = voorNaam;
+		this.tussenVoegsel = tussenVoegsel;
+		this.achterNaam = achterNaam;
+		this.adres = adres;
+		this.postCode = postCode;
+		this.plaatsNaam = plaatsNaam;
+		this.land = land;
+		this.geboorteDag = geboorteDag;
+		this.email = email;
+		this.telefoonNummer = telefoonNummer;
+		this.kanVerkopen = kanVerkopen;
+		this.bankNummer = bankNummer;
+	}
+
 	public Gebruiker(String gebruikersNaam, String voorNaam, String tussenVoegsel, String achterNaam, String adres,
 			String postCode, String plaatsNaam, String land, Date geboorteDag, String email, int telefoonNummer,
 			String wachtWoord, Boolean kanVerkopen, String bankNummer) {
@@ -39,6 +66,7 @@ public class Gebruiker {
 		this.kanVerkopen = kanVerkopen;
 		this.bankNummer = bankNummer;
 	}
+	
 	public Gebruiker(Integer gebruikersID, String gebruikersNaam, String voorNaam, String tussenVoegsel,
 			String achterNaam, String adres, String postcCode,String plaatsNaam, String land, Date geboorteDag, String email,
 			Integer telefoonNummer, String wachtWoord, Boolean kanVerkopen, String bankNummer) {

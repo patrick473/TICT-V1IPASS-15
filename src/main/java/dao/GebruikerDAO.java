@@ -67,7 +67,7 @@ public Gebruiker update(Gebruiker b) {
 				"update gebruiker "+
 "set gebruikersnaam='"+b.getGebruikersNaam()+"',tussenvoegsel='"+b.getTussenVoegsel()+"',achternaam='"+b.getAchterNaam()+"',"
 + "adres='"+b.getAdres()+"',postcode='"+b.getPostCode()+"',plaatsnaam='"+b.getPlaatsNaam()+"',land='"+b.getLand()+"',geboortedag=?,"
-+ "email='"+b.getEmail()+"',telefoonnummer="+b.getTelefoonNummer()+",wachtwoord='"+b.getWachtWoord()+"',kanVerkopen=?,banknummer='"+b.getBankNummer()+"' where gebruikersid="+b.getGebruikersID()+"");
++ "email='"+b.getEmail()+"',telefoonnummer="+b.getTelefoonNummer()+",kanVerkopen=?,banknummer='"+b.getBankNummer()+"' where gebruikersid="+b.getGebruikersID()+"");
 		
 		stmt.setDate(1, b.getGeboorteDag());
 		
@@ -85,6 +85,30 @@ public Gebruiker update(Gebruiker b) {
 	}
 	
 	return findByCode(b.getGebruikersID());
+}
+public Gebruiker updatePassword (Gebruiker b){
+	try (Connection con = super.connect()) {
+		PreparedStatement stmt = con.prepareStatement(
+				"update gebruiker "+
+"set set wachtwoord ='"+b.getWachtWoord()+"' where gebruikersid="+b.getGebruikersID()+"");
+		
+		stmt.setDate(1, b.getGeboorteDag());
+		
+		if(b.getKanVerkopen() == true){
+			stmt.setInt(2, 1);
+		}
+		else{
+			stmt.setInt(2, 0);
+		}
+		stmt.executeUpdate();
+		
+		
+	} catch (SQLException sqle) {
+		sqle.printStackTrace();
+	}
+	
+	return findByCode(b.getGebruikersID());
+	
 }
 
 
