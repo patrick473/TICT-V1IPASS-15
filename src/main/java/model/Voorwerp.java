@@ -19,7 +19,32 @@ public class Voorwerp {
 	private double verkoopprijs;
 	private Integer rubriek;
 	
-	
+
+
+	public Voorwerp(Integer voorwerpNummer, Timestamp eindTijd, Integer koper, boolean veilingGesloten,
+			double verkoopprijs) {
+		super();
+		this.voorwerpNummer = voorwerpNummer;
+		this.eindTijd = eindTijd;
+		this.koper = koper;
+		this.veilingGesloten = veilingGesloten;
+		this.verkoopprijs = verkoopprijs;
+	}
+	public Voorwerp(String titel, String beschrijving, double startPrijs, String betalingswijze, Timestamp beginTijd,
+			double verzendkosten, String verzendinstructie, Integer verkoper, boolean veilingGesloten,
+			Integer rubriek) {
+		super();
+		this.titel = titel;
+		this.beschrijving = beschrijving;
+		this.startPrijs = startPrijs;
+		this.betalingswijze = betalingswijze;
+		this.beginTijd = beginTijd;
+		this.verzendkosten = verzendkosten;
+		this.verzendinstructie = verzendinstructie;
+		this.verkoper = verkoper;
+		this.veilingGesloten = veilingGesloten;
+		this.rubriek = rubriek;
+	}
 	public Voorwerp(Integer voorwerpNummer, String titel, String beschrijving, double startPrijs, String betalingswijze,
 			Timestamp beginTijd, Timestamp eindTijd, double verzendkosten, String verzendinstructie, Integer verkoper,
 			Integer koper, boolean veilingGesloten, double verkoopprijs, Integer rubriek) {
