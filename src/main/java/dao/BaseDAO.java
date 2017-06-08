@@ -6,9 +6,9 @@ public class BaseDAO {
 	//Zorg ter voorbereiding dat je ojdbc.jar download en toevoegt aan je project.
 	
 	//Aanmaken van de variabelen die je connectie specificeren. In dit geval een gebruiker "harry" met password "harry"
-	private static final String DB_DRIV = "oracle.jdbc.driver.OracleDriver";
-	private static final String DB_URL = "jdbc:oracle:thin:@//localhost:1521/xe";
-	private static final String DB_USER = "admin";
+	private static final String DB_DRIV = "org.postgresql.Driver";
+	private static final String DB_URL = "jdbc:postgresql://localhost:5432/ipass";
+	private static final String DB_USER = "postgres";
 	private static final String DB_PASS = "hunter2";
 	private static Connection conn;
 	

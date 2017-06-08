@@ -30,11 +30,11 @@ public class RubriekDAO extends BaseDAO{
 	}
 
 	public ArrayList<Rubriek> selectAll() {
-		return selectRubrieken("SELECT * FROM bod");
+		return selectRubrieken("SELECT * FROM rubriek");
 	}
 
 	public Rubriek findByCode(int id) {
-		return selectRubrieken("SELECT * FROM bod WHERE rubrieknummer = " + id + "").get(0);
+		return selectRubrieken("SELECT * FROM rubriek WHERE rubrieknummer = " + id + "").get(0);
 	}
 	public ArrayList<Rubriek> selectBovensteRubriek(){
 		return selectRubrieken("select * from rubriek where inrubriek is null");

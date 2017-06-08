@@ -24,5 +24,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/school/V1WAC/p2/src/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="D:/DL/postgresql-42.1.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

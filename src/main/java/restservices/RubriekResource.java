@@ -19,7 +19,7 @@ public class RubriekResource {
 	JsonObjectBuilder job = Json.createObjectBuilder();
 	
 	@GET
-	@RolesAllowed({"gebruiker","verkoper"})
+
 	@Produces("application/json")
 	public String getRubrieken(){
 		
@@ -34,7 +34,7 @@ public class RubriekResource {
 		return array.toString();
 	}
 	@GET
-	@RolesAllowed({"gebruiker","verkoper"})
+	
 	@Path("/{code}")
 	@Produces("application/json")
 	public String getRubriek(@PathParam("code")int code){
@@ -50,7 +50,7 @@ public class RubriekResource {
 	}
 	
 	@GET
-	@RolesAllowed({"gebruiker","verkoper"})
+
 	@Path("/bovenste")
 	@Produces("application/json")
 	public String getBovensteRubrieken(){
@@ -67,7 +67,7 @@ public class RubriekResource {
 		
 	}
 	@GET
-	@RolesAllowed({"gebruiker","verkoper"})
+	
 	@Path("/onder/{code}")
 	@Produces("application/json")
 	public String getBovensteRubrieken(@PathParam("code")int code){

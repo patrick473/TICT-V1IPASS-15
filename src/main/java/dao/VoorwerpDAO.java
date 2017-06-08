@@ -29,14 +29,8 @@ public class VoorwerpDAO extends BaseDAO{
 			String verzendinstructie = dbrs.getString("verzendinstructie");
 			int verkoper = dbrs.getInt("verkoper");
 			int koper = dbrs.getInt("koper");
-			int vg = dbrs.getInt("veilinggesloten");
-			boolean veilingGesloten;
-			if(vg == 1){
-				veilingGesloten = true;
-			}
-			else{
-				veilingGesloten = false;
-			}
+			boolean veilingGesloten = dbrs.getBoolean("veilinggesloten");
+		
 			int verkoopprijs = dbrs.getInt("verkoopprijs");
 			int rubriek = dbrs.getInt("rubriek");
 			Voorwerp voorwerp = new Voorwerp(voorwerpNummer,titel,beschrijving,startprijs,betalingswijze,begintijd,eindtijd,verzendkosten,verzendinstructie,verkoper,koper,veilingGesloten,verkoopprijs,rubriek);
@@ -65,7 +59,7 @@ public class VoorwerpDAO extends BaseDAO{
 		try (Connection con = super.connect()) {
 			PreparedStatement stmt = con.prepareStatement(
 					"update voorwerp "+
-	"set eindtijd=? ,koper="+b.getKoper()+",veilingGesloten= 1,"
+	"set eindtijd=? ,koper="+b.getKoper()+",veilingGesloten= true,"
 	+ "verkoopprijs="+b.getVerkoopprijs()+"where voorwerpnummer="+b.getVoorwerpNummer()+"");
 			
 			stmt.setTimestamp(1, b.getEindTijd());

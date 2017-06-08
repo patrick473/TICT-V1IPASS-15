@@ -56,7 +56,7 @@ for (Voorwerp v: vdao.selectAll()){
 	}
 	@GET
 	@RolesAllowed({"gebruiker","verkoper"})
-	@Path("{id}")
+	@Path("/{id}")
 	@Produces("application/json")
 	public String findByCode(@PathParam("id")int id){
 		
@@ -83,6 +83,7 @@ for (Voorwerp v: vdao.selectAll()){
 	}
 	@GET
 	@RolesAllowed({"gebruiker","verkoper"})
+	@Path("/rubriek/{rubriek}")
 	@Produces("application/json")
 	public String findByRubriek(@PathParam("rubriek")int rubriek){
 		

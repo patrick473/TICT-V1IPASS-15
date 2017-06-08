@@ -31,16 +31,10 @@ public class GebruikerDAO extends BaseDAO{
 		String email = dbrs.getString("email");
 		int telefoonNummer = dbrs.getInt("telefoonnummer");
 		String wachtwoord = dbrs.getString("wachtwoord");
-		int kv = dbrs.getInt("kanverkopen");
+		boolean kanVerkopen = dbrs.getBoolean("kanverkopen");
 		String bankNummer = dbrs.getString("banknummer");
 		
-		boolean kanVerkopen = false;
-		if (kv == 1){
-			kanVerkopen = true;
-		}
-		else if (kv == 0){
-			kanVerkopen = false;
-		}
+		
 		
 		Gebruiker gebruiker = new Gebruiker(gebruikersId,gebruikersnaam,voornaam,tussenvoegsel,achternaam,adres,postcode,plaatsnaam,land,geboortedag,email,telefoonNummer,wachtwoord,kanVerkopen,bankNummer);
 	
@@ -70,13 +64,8 @@ public Gebruiker update(Gebruiker b) {
 + "email='"+b.getEmail()+"',telefoonnummer="+b.getTelefoonNummer()+",kanVerkopen=?,banknummer='"+b.getBankNummer()+"' where gebruikersid="+b.getGebruikersID()+"");
 		
 		stmt.setDate(1, b.getGeboorteDag());
+			stmt.setBoolean(2, b.getKanVerkopen());
 		
-		if(b.getKanVerkopen() == true){
-			stmt.setInt(2, 1);
-		}
-		else{
-			stmt.setInt(2, 0);
-		}
 		stmt.executeUpdate();
 		
 		
@@ -94,12 +83,8 @@ public Gebruiker updatePassword (Gebruiker b){
 		
 		stmt.setDate(1, b.getGeboorteDag());
 		
-		if(b.getKanVerkopen() == true){
-			stmt.setInt(2, 1);
-		}
-		else{
-			stmt.setInt(2, 0);
-		}
+		
+			stmt.setBoolean(2, b.getKanVerkopen());
 		stmt.executeUpdate();
 		
 		
@@ -123,12 +108,7 @@ public Gebruiker insert(Gebruiker b) {
 												+ "',?,'"+b.getBankNummer()+"')");
 		
 		stmt.setDate(1, b.getGeboorteDag());
-		if(b.getKanVerkopen() == true){
-			stmt.setInt(2, 1);
-		}
-		else{
-			stmt.setInt(2, 0);
-		}
+		stmt.setBoolean(2, b.getKanVerkopen());
 		stmt.executeUpdate();
 		
 	} catch (SQLException sqle) {
