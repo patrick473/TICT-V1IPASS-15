@@ -74,6 +74,7 @@ $("#itemCollection").delegate('a', 'click', function() {
 });
     $.get("http://localhost:4711/onebid/restservices/bod/voorwerp/hoogste/"+voorwerpnummer, (data) => {
 
+        $("#biedingencollection").data('hoogste', data.bodBedrag);
 
     });
 
