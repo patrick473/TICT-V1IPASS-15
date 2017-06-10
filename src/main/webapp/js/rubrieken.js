@@ -72,10 +72,12 @@ $("#itemCollection").delegate('a', 'click', function() {
 }).fail( ()=>{
     $("#biedingenCollection").append('<li class="collection-item">er is nog niet op geboden . Jij kan het verschil maken</li>');
 });
+
     $.get("http://localhost:4711/onebid/restservices/bod/voorwerp/hoogste/"+voorwerpnummer, (data) => {
-
-        $("#biedingencollection").data('hoogste', data.bodBedrag);
-
+$(data).each(function(index) {
+        $("#biedingencollection").data('hoogste', this.bodBedrag);
+        console.log($("#biedingencollection").data('hoogste'));
+})
     });
 
     $('#veilingpopup').modal();
