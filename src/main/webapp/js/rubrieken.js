@@ -48,10 +48,17 @@ $("#secondRubriekenCollection").delegate('a', 'click', function() {
 
 $("#itemCollection").delegate('a', 'click', function() {
     voorwerpnummer = $(this).data('voorwerpnummer');
+    console.log(voorwerpnummer);
     $.get("http://localhost:4711/onebid/restservices/voorwerp/"+voorwerpnummer, (data) => {
+        
+        $(data).each(function(index) {
 
+        $("#modalTitel").text(this.titel);
+        $("#modalStartprijs").text("startprijs: € "+ this.startprijs);
+        $("#modalStartprijs").data('startprijs', this.startprijs);
+        $("#modalBeschrijving").text(this.beschrijving);
 
-
+})
 
     });
     $('#veilingpopup').modal();
