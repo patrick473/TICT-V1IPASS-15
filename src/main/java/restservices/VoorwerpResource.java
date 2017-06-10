@@ -29,7 +29,7 @@ public class VoorwerpResource {
 	
 	
 	@GET
-	@RolesAllowed({"gebruiker","verkoper"})
+
 	@Produces("application/json")
 	public String selectAll(){
 for (Voorwerp v: vdao.selectAll()){
@@ -40,7 +40,6 @@ for (Voorwerp v: vdao.selectAll()){
 			job.add("startprijs", v.getStartPrijs() );
 			job.add("betalingswijze", v.getBetalingswijze());
 			job.add("begintijd", v.getBeginTijd().getTime());
-			job.add("eindtijd", v.getEindTijd().getTime());
 			job.add("verzendkosten", v.getVerzendkosten());
 			job.add("verzendinstructie", v.getVerzendinstructie());
 			job.add("verkoper", v.getVerkoper());
@@ -55,7 +54,7 @@ for (Voorwerp v: vdao.selectAll()){
 		
 	}
 	@GET
-	@RolesAllowed({"gebruiker","verkoper"})
+	
 	@Path("/{id}")
 	@Produces("application/json")
 	public String findByCode(@PathParam("id")int id){
@@ -67,7 +66,7 @@ for (Voorwerp v: vdao.selectAll()){
 		job.add("startprijs", v.getStartPrijs() );
 		job.add("betalingswijze", v.getBetalingswijze());
 		job.add("begintijd", v.getBeginTijd().getTime());
-		job.add("eindtijd", v.getEindTijd().getTime());
+		
 		job.add("verzendkosten", v.getVerzendkosten());
 		job.add("verzendinstructie", v.getVerzendinstructie());
 		job.add("verkoper", v.getVerkoper());
@@ -82,7 +81,7 @@ for (Voorwerp v: vdao.selectAll()){
 		
 	}
 	@GET
-	@RolesAllowed({"gebruiker","verkoper"})
+	
 	@Path("/rubriek/{rubriek}")
 	@Produces("application/json")
 	public String findByRubriek(@PathParam("rubriek")int rubriek){
@@ -94,7 +93,7 @@ for (Voorwerp v: vdao.selectAll()){
 		job.add("startprijs", v.getStartPrijs() );
 		job.add("betalingswijze", v.getBetalingswijze());
 		job.add("begintijd", v.getBeginTijd().getTime());
-		job.add("eindtijd", v.getEindTijd().getTime());
+		
 		job.add("verzendkosten", v.getVerzendkosten());
 		job.add("verzendinstructie", v.getVerzendinstructie());
 		job.add("verkoper", v.getVerkoper());
@@ -109,7 +108,7 @@ for (Voorwerp v: vdao.selectAll()){
 		
 	}
 	@POST
-	@RolesAllowed("verkoper")
+	
 	@Path("/new")
 	@Produces("application/json")
 	public String insertVoorwerp(@FormParam("titel") String titel,
@@ -130,7 +129,7 @@ for (Voorwerp v: vdao.selectAll()){
 	}
 	
 	@PUT
-	@RolesAllowed("verkoper")
+
 	@Path("/end/{id}")
 	@Produces("application/json")
 	public String endVeiling(@PathParam("id")int id,@FormParam("koper")int koper,
@@ -143,7 +142,7 @@ for (Voorwerp v: vdao.selectAll()){
 		return v.toString();
 	}
 	@DELETE
-	@RolesAllowed("verkoper")
+
 	@Produces("application/json")
 	@Path("/delete/{id}")
 	public String deleteVoorwerp(@PathParam("id")int id){

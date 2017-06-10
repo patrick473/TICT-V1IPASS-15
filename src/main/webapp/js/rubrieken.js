@@ -21,7 +21,44 @@ $("#initRubriekenCollection").delegate('a', 'click', function() {
             $('#secondRubriekenCollection').removeClass('hide');
         });
 });
+$("#secondRubriekenCollection").delegate('a', 'click', function() {
+       rubriek = $(this).data("rubrieknummer");
+       $("#itemCollection").empty();
+    $.get("http://localhost:4711/onebid/restservices/voorwerp/rubriek/"+rubriek, (data) => {
 
+            $(data).each(function(index) {
+                $("#itemCollection").append('<a id="voorwerp'+this.voorwerpnummer+ '"data-voorwerpnummer="'+this.voorwerpnummer+'"class="collection-item avatar"> '+
+                  '<span id="title" class="title">'+this.titel+'</span>'+
+                ' <p>de startprijs is '+this.startprijs+'<p id="beschrijving" class="black-text">'+this.beschrijving+'</p>'+
+                '  </a>');
+
+
+            });
+        })
+        .fail( ()=>{
+            $("#itemCollection").append('<p id="voorwerpfail"> '+
+              '<h4 id="title" class="title">oeps er is iets fout gegaan</h4>'+
+            ' <p id="beschrijving" class="black-text">er zijn geen veilingen gevonden</p>'+
+            '  </p>');
+        });
+        $("#itemCollection").removeClass('hide');
+        $('#initRubriekenCollection').addClass('hide');
+        $('#secondRubriekenCollection').addClass('hide');
+});
+
+$("#itemCollection").delegate('a', 'click', function() {
+    voorwerpnummer = $(this).data('voorwerpnummer');
+    $.get("http://localhost:4711/onebid/restservices/voorwerp/"+voorwerpnummer, (data) => {
+
+
+
+
+    });
+    $('#veilingpopup').modal();
+
+ $('#veilingpopup').modal('open');
+
+});
 
 $("#returnbutton").click(function(event) {
     showUpperhideUnder();
@@ -56,11 +93,9 @@ function loadRubriekenUpper(){
             });
         });
 }
-function loadRubriekenUnder(){
-
-}
 
 function showUpperhideUnder(){
+    $("#itemCollection").addClass('hide');
     $("#initRubriekenCollection").removeClass('hide');
     $("#secondRubriekenCollection").addClass('hide');
     $("#secondRubriekenCollection").empty();

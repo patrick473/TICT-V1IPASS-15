@@ -23,7 +23,7 @@ public class BodResource {
 	JsonArrayBuilder jab = Json.createArrayBuilder();
 	JsonObjectBuilder job = Json.createObjectBuilder();
 	@GET
-	@RolesAllowed({"gebruiker","verkoper"})
+
 	@Produces("application/json")
 	public String getBoden(){
 		for (Bod b: bdao.selectAll()){
@@ -45,7 +45,7 @@ public class BodResource {
 
 
 		@GET
-		@RolesAllowed({"gebruiker","verkoper"})
+	
 		@Path("/{code}")
 		@Produces("application/json")
 		public String getBodByID(@PathParam("code") int id){
@@ -65,7 +65,7 @@ public class BodResource {
 	
   
 		@POST
-		@RolesAllowed({"gebruiker","verkoper"})
+		
 		@Path("/{voorwerp}/{bieder}")
 		public String createBod(@FormParam("bodbedrag") double bodbedrag,
 				@PathParam("voorwerp") int voorwerpnummer,@PathParam("bieder")int bieder){
