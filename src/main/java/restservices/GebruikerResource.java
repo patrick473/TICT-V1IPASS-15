@@ -33,7 +33,6 @@ for (Gebruiker g: gdao.selectAll()){
 			job.add("gebruikerID", g.getGebruikersID());
 			job.add("gebruikersnaam",g.getGebruikersNaam());
 			job.add("voornaam", g.getVoorNaam());
-			job.add("tussenvoegsel", g.getTussenVoegsel() );
 			job.add("achternaam", g.getAchterNaam());
 			job.add("achternaam", g.getAchterNaam());
 			job.add("adres", g.getAdres());
@@ -58,7 +57,7 @@ for (Gebruiker g: gdao.selectAll()){
 		job.add("gebruikerID", g.getGebruikersID());
 		job.add("gebruikersnaam",g.getGebruikersNaam());
 		job.add("voornaam", g.getVoorNaam());
-		job.add("tussenvoegsel", g.getTussenVoegsel() );
+	
 		job.add("achternaam", g.getAchterNaam());
 		job.add("achternaam", g.getAchterNaam());
 		job.add("adres", g.getAdres());
@@ -83,13 +82,13 @@ for (Gebruiker g: gdao.selectAll()){
 	@Produces("application/json")
 	public String updateGebruiker(@PathParam("id")int id,@FormParam("gebruikersnaam")String gebruikersnaam,
 			@FormParam("voornaam")String voornaam,
-			@FormParam("tussenvoegsel")String tussenvoegsel,@FormParam("achternaam")String achternaam,
+			@FormParam("achternaam")String achternaam,
 			@FormParam("adres")String adres,@FormParam("postcode")String postcode,@FormParam("plaatsnaam")String plaatsnaam,
 			@FormParam("land")String land,@FormParam("geboortedag")Date geboortedag,@FormParam("email")String email,
 			@FormParam("telefoonnummer")int telefoonnummer,
 			@PathParam("kanverkopen")boolean kanverkopen,@FormParam("banknummer")String banknummer){
 		
-		Gebruiker g = new Gebruiker(id,gebruikersnaam,voornaam,tussenvoegsel,achternaam,adres,postcode,
+		Gebruiker g = new Gebruiker(id,gebruikersnaam,voornaam,achternaam,adres,postcode,
 				plaatsnaam,land,geboortedag,email,telefoonnummer,kanverkopen,banknummer);
 		gdao.update(g);
 		return g.toString();
@@ -109,13 +108,13 @@ for (Gebruiker g: gdao.selectAll()){
 	@Path("/new/{kanverkopen}")
 	@Produces("application/json")
 	public String newGebruiker(@FormParam("gebruikersnaam")String gebruikersnaam,@FormParam("voornaam")String voornaam,
-			@FormParam("tussenvoegsel")String tussenvoegsel,@FormParam("achternaam")String achternaam,
+			@FormParam("achternaam")String achternaam,
 			@FormParam("adres")String adres,@FormParam("postcode")String postcode,@FormParam("plaatsnaam")String plaatsnaam,
 			@FormParam("land")String land,@FormParam("geboortedag")Date geboortedag,@FormParam("email")String email,
 			@FormParam("telefoonnummer")int telefoonnummer,@FormParam("wachtwoord")String wachtwoord,
 			@PathParam("kanverkopen")boolean kanverkopen,@FormParam("banknummer")String banknummer){
 	
-		Gebruiker g = new Gebruiker(gebruikersnaam,voornaam,tussenvoegsel,achternaam,adres,postcode,
+		Gebruiker g = new Gebruiker(gebruikersnaam,voornaam,achternaam,adres,postcode,
 				plaatsnaam,land,geboortedag,email,telefoonnummer,wachtwoord,kanverkopen,banknummer);
 		gdao.insert(g);
 		

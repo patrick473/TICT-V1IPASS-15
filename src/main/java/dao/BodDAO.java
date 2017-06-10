@@ -42,7 +42,10 @@ public Bod findByCode(int id) {
 	return selectBoden("SELECT * FROM bod WHERE bodid = " + id + "").get(0);
 }
 public ArrayList<Bod> findByVoorwerp(int id) {
-	return selectBoden("SELECT * FROM bod WHERE voorwerp = " + id + "");
+	return selectBoden("SELECT * FROM bod WHERE voorwerp = " + id + " order by bodbedrag desc");
+}
+public Bod findhighestBodByVoorwerp(int voorwerp) {
+	return selectBoden("select * from bod where voorwerp ="+voorwerp+" order by bodbedrag desc limit 1").get(0);
 }
 public Bod insert(Bod b) {
 	try (Connection con = super.connect()) {

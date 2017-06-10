@@ -7,7 +7,7 @@ public class Gebruiker {
 	private int gebruikersID;
 	private String gebruikersNaam;
 	private String voorNaam;
-	private String tussenVoegsel;
+
 	private String achterNaam;
 	private String adres ;
 	private String postCode;
@@ -27,14 +27,14 @@ public class Gebruiker {
 		this.wachtWoord = wachtWoord;
 	}
 
-	public Gebruiker(int gebruikersID, String gebruikersNaam, String voorNaam, String tussenVoegsel, String achterNaam,
+	public Gebruiker(int gebruikersID, String gebruikersNaam, String voorNaam,  String achterNaam,
 			String adres, String postCode, String plaatsNaam, String land, Date geboorteDag, String email,
 			int telefoonNummer, Boolean kanVerkopen, String bankNummer) {
 		super();
 		this.gebruikersID = gebruikersID;
 		this.gebruikersNaam = gebruikersNaam;
 		this.voorNaam = voorNaam;
-		this.tussenVoegsel = tussenVoegsel;
+		
 		this.achterNaam = achterNaam;
 		this.adres = adres;
 		this.postCode = postCode;
@@ -47,13 +47,13 @@ public class Gebruiker {
 		this.bankNummer = bankNummer;
 	}
 
-	public Gebruiker(String gebruikersNaam, String voorNaam, String tussenVoegsel, String achterNaam, String adres,
+	public Gebruiker(String gebruikersNaam, String voorNaam, String achterNaam, String adres,
 			String postCode, String plaatsNaam, String land, Date geboorteDag, String email, int telefoonNummer,
 			String wachtWoord, Boolean kanVerkopen, String bankNummer) {
 		super();
 		this.gebruikersNaam = gebruikersNaam;
 		this.voorNaam = voorNaam;
-		this.tussenVoegsel = tussenVoegsel;
+		
 		this.achterNaam = achterNaam;
 		this.adres = adres;
 		this.postCode = postCode;
@@ -67,14 +67,14 @@ public class Gebruiker {
 		this.bankNummer = bankNummer;
 	}
 	
-	public Gebruiker(Integer gebruikersID, String gebruikersNaam, String voorNaam, String tussenVoegsel,
+	public Gebruiker(Integer gebruikersID, String gebruikersNaam, String voorNaam, 
 			String achterNaam, String adres, String postcCode,String plaatsNaam, String land, Date geboorteDag, String email,
 			Integer telefoonNummer, String wachtWoord, Boolean kanVerkopen, String bankNummer) {
 		super();
 		this.gebruikersID = gebruikersID;
 		this.gebruikersNaam = gebruikersNaam;
 		this.voorNaam = voorNaam;
-		this.tussenVoegsel = tussenVoegsel;
+		
 		this.achterNaam = achterNaam;
 		this.adres = adres;
 		this.postCode = postcCode;
@@ -105,12 +105,7 @@ public class Gebruiker {
 	public void setVoorNaam(String voorNaam) {
 		this.voorNaam = voorNaam;
 	}
-	public String getTussenVoegsel() {
-		return tussenVoegsel;
-	}
-	public void setTussenVoegsel(String tussenVoegsel) {
-		this.tussenVoegsel = tussenVoegsel;
-	}
+	
 	public String getAchterNaam() {
 		return achterNaam;
 	}
@@ -181,7 +176,7 @@ public class Gebruiker {
 	@Override
 	public String toString() {
 		return "Gebruiker [gebruikersID=" + gebruikersID + ", gebruikersNaam=" + gebruikersNaam + ", voorNaam="
-				+ voorNaam + ", tussenVoegsel=" + tussenVoegsel + ", achterNaam=" + achterNaam + ", adres=" + adres
+				+ voorNaam + ", achterNaam=" + achterNaam + ", adres=" + adres
 				+ ", postCode=" + postCode + ", plaatsNaam=" + plaatsNaam + ", land=" + land + ", geboorteDag="
 				+ geboorteDag + ", email=" + email + ", telefoonNummer=" + telefoonNummer + ", wachtWoord=" + wachtWoord
 				+ ", kanVerkopen=" + kanVerkopen + ", bankNummer=" + bankNummer + "]";

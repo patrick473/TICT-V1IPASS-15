@@ -21,7 +21,7 @@ public class GebruikerDAO extends BaseDAO{
 		int gebruikersId = dbrs.getInt("gebruikersid");
 		String gebruikersnaam = dbrs.getString("gebruikersnaam");
 		String voornaam  = dbrs.getString("voornaam");
-		String tussenvoegsel = dbrs.getString("tussenvoegsel");
+		
 		String achternaam  = dbrs.getString("achternaam");
 		String adres = dbrs.getString("adres");
 		String postcode = dbrs.getString("postcode");
@@ -36,7 +36,7 @@ public class GebruikerDAO extends BaseDAO{
 		
 		
 		
-		Gebruiker gebruiker = new Gebruiker(gebruikersId,gebruikersnaam,voornaam,tussenvoegsel,achternaam,adres,postcode,plaatsnaam,land,geboortedag,email,telefoonNummer,wachtwoord,kanVerkopen,bankNummer);
+		Gebruiker gebruiker = new Gebruiker(gebruikersId,gebruikersnaam,voornaam,achternaam,adres,postcode,plaatsnaam,land,geboortedag,email,telefoonNummer,wachtwoord,kanVerkopen,bankNummer);
 	
 		gebruikers.add(gebruiker);
 	}
@@ -59,7 +59,7 @@ public Gebruiker update(Gebruiker b) {
 	try (Connection con = super.connect()) {
 		PreparedStatement stmt = con.prepareStatement(
 				"update gebruiker "+
-"set gebruikersnaam='"+b.getGebruikersNaam()+"',tussenvoegsel='"+b.getTussenVoegsel()+"',achternaam='"+b.getAchterNaam()+"',"
+"set gebruikersnaam='"+b.getGebruikersNaam()+"',achternaam='"+b.getAchterNaam()+"',"
 + "adres='"+b.getAdres()+"',postcode='"+b.getPostCode()+"',plaatsnaam='"+b.getPlaatsNaam()+"',land='"+b.getLand()+"',geboortedag=?,"
 + "email='"+b.getEmail()+"',telefoonnummer="+b.getTelefoonNummer()+",kanVerkopen=?,banknummer='"+b.getBankNummer()+"' where gebruikersid="+b.getGebruikersID()+"");
 		
@@ -102,7 +102,7 @@ public Gebruiker insert(Gebruiker b) {
 		PreparedStatement stmt = con.prepareStatement(
 				"insert into gebruiker"
 				+ " values(gebruiker_sequence.nextval,'"+b.getGebruikersNaam()+"','"+b.getVoorNaam()+"'"
-						+ ",'"+b.getTussenVoegsel()+"','"+b.getAchterNaam()+"','"+b.getAdres()+"'"
+						+ ",'"+b.getAchterNaam()+"','"+b.getAdres()+"'"
 								+ ",'"+b.getPostCode()+"','"+b.getPlaatsNaam()+"','"+b.getLand()+"',?,"
 										+ "'"+b.getEmail()+"',"+b.getTelefoonNummer()+",'"+b.getWachtWoord()+""
 												+ "',?,'"+b.getBankNummer()+"')");

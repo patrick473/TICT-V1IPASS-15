@@ -50,7 +50,7 @@ $("#itemCollection").delegate('a', 'click', function() {
     voorwerpnummer = $(this).data('voorwerpnummer');
     console.log(voorwerpnummer);
     $.get("http://localhost:4711/onebid/restservices/voorwerp/"+voorwerpnummer, (data) => {
-        
+
         $(data).each(function(index) {
 
         $("#modalTitel").text(this.titel);
@@ -58,9 +58,25 @@ $("#itemCollection").delegate('a', 'click', function() {
         $("#modalStartprijs").data('startprijs', this.startprijs);
         $("#modalBeschrijving").text(this.beschrijving);
 
-})
+});
 
     });
+    $.get("http://localhost:4711/onebid/restservices/bod/voorwerp/"+voorwerpnummer, (data) => {
+
+        $(data).each(function(index) {
+
+            $("#biedingencollection").append('<li id="bod'+this.bodID+'"class="collection-item"><span>'+this.gebruiker+'</span> € <span>'+this.bodBedrag+'</span>,-</li>');
+
+    });
+
+}).fail( ()=>{
+    $("#biedingenCollection").append('<li class="collection-item">er is nog niet op geboden . Jij kan het verschil maken</li>');
+});
+    $.get("http://localhost:4711/onebid/restservices/bod/voorwerp/hoogste/"+voorwerpnummer, (data) => {
+
+
+    });
+
     $('#veilingpopup').modal();
 
  $('#veilingpopup').modal('open');
