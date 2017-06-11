@@ -21,8 +21,8 @@ public class AuthenticationResource {
  final static public Key key = MacProvider.generateKey();
  @POST
  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
- public Response authenticateUser(@FormParam("username") String username,
- @FormParam("password") String password) {
+ public Response authenticateUser(@FormParam("gebruikersnaam") String username,
+ @FormParam("wachtwoord") String password) {
  try {
  // Authenticate the user against the database
  UserDAO dao = new UserDAO();

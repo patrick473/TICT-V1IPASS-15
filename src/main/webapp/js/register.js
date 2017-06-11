@@ -12,16 +12,12 @@ $("input, textarea").alphanum({
     forceLower         : false,
     maxLength          : NaN
 });
-
-$(document).ready(function() {
-
-});
 $("#loginForm").validate({
        rules: {
            gebruikersnaam: {
                required: true,
            },
-           wachtwoord: {
+           password: {
                required: true,
            },
 
@@ -32,7 +28,7 @@ $("#loginForm").validate({
                required: "voer een gebruikersnaam in.",
 
            },
-           wachtwoord:{
+           password:{
                required: "voer een wachtwoord in."
            }
        },
@@ -40,23 +36,9 @@ $("#loginForm").validate({
        errorPlacement: function(error, element) {
          var placement = $(element).data('error');
          if (placement) {
-           $(placement).append(error);
+           $(placement).append(error)
          } else {
            error.insertAfter(element);
          }
-       },
-       submitHandler: function(form) {
-         var data = $("#loginForm").serialize();
-         console.log(data);
-         event.preventDefault();
-         $.post("http://localhost:4711/onebid/restservices/authentication", data, function(response) {
-           console.log(data);
-           window.sessionStorage.setItem("sessionToken", response);
-           console.log(window.sessionStorage.getItem("sessionToken"));
-         }).fail(function(jqXHR, textStatus, errorThrown) {
-           console.log(textStatus);
-           console.log(errorThrown);
-         });
-
-  }
+       }
     });

@@ -18,8 +18,8 @@ public class UserDAO extends BaseDAO {
 
 	 ResultSet rs = pstmt.executeQuery();
 	 if (rs.next()){
-		 int kanverkopen = rs.getInt("kanverkopen");
-		 if (kanverkopen == 1){
+		 boolean kanverkopen = rs.getBoolean("kanverkopen");
+		 if (kanverkopen == true){
 			 role = "verkoper";
 		 }
 		 else{

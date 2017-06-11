@@ -13,15 +13,10 @@ public class TestRunner {
 		RubriekDAO rdao = new RubriekDAO();
 		VoorwerpDAO vdao = new VoorwerpDAO();
 		BodDAO bbdao = new BodDAO();
+		UserDAO udao = new UserDAO();
 		
 		bdao.connect();
-		System.out.println(vdao.selectAll());
-		ArrayList<Bod> al = bbdao.findByVoorwerp(14);
-		for ( Bod i: al){
-			System.out.println(gdao.findByCode(i.getGebruiker()));
-		}
-		
-		
+		System.out.println(udao.findRoleForUsernameAndPassword("patrick473", "wachtwoord"));
 	}
 
 }
