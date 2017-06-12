@@ -47,10 +47,10 @@ $("#loginForm").validate({
        },
        submitHandler: function(form) {
          var data = $("#loginForm").serialize();
-         console.log(data);
+
          event.preventDefault();
          $.post("http://localhost:4711/onebid/restservices/authentication", data, function(response) {
-           console.log(data);
+
            window.sessionStorage.setItem("sessionToken", response);
            console.log(window.sessionStorage.getItem("sessionToken"));
          }).fail(function(jqXHR, textStatus, errorThrown) {
