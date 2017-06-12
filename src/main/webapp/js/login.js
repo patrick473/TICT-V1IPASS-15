@@ -14,7 +14,7 @@ $("input, textarea").alphanum({
 });
 
 $(document).ready(function() {
-
+console.log(sessionStorage.getItem("sessionToken"));
 });
 $("#loginForm").validate({
        rules: {
@@ -51,12 +51,31 @@ $("#loginForm").validate({
          event.preventDefault();
          $.post("http://localhost:4711/onebid/restservices/authentication", data, function(response) {
 
-           window.sessionStorage.setItem("sessionToken", response);
-           console.log(window.sessionStorage.getItem("sessionToken"));
+           sessionStorage.setItem("sessionToken", response);
+           console.log(sessionStorage.getItem("sessionToken"));
          }).fail(function(jqXHR, textStatus, errorThrown) {
            console.log(textStatus);
            console.log(errorThrown);
          });
+         gebruikersnaam = $("#gebruikersnaam").val();
+
+         $.get("http://localhost:4711/onebid/restservices/gebruiker/username/"+gebruikersnaam, (response) =>{
+            console.log(response);
+            $(response).each(function(index) {
+                console.log(this);
+                sessionStorage.setItem("gebruikerID",this.gebruikerID);
+                sessionStorage.setItem("kanverkopen", this.kanverkopen);
+            });
+
+
+                console.log(sessionStorage.getItem("gebruikerID"));
+                console.log(sessionStorage.getItem("kanverkopen"));
+
+         });
+           setTimeout(function(){window.location.replace("veilingen.html"); }, 2000);
+
+
+
 
   }
     });

@@ -45,17 +45,22 @@ public ArrayList<Bod> findByVoorwerp(int id) {
 	return selectBoden("SELECT * FROM bod WHERE voorwerp = " + id + " order by bodbedrag desc");
 }
 public Bod findhighestBodByVoorwerp(int voorwerp) {
-	return selectBoden("select * from bod where voorwerp ="+voorwerp+" order by bodbedrag desc limit 1").get(0);
+	
+	ArrayList<Bod> a= selectBoden("select * from bod where voorwerp ="+voorwerp+" order by bodbedrag desc limit 1");
+	if (a.size()>0){
+		return a.get(0);
+	}
+	else{ return null;}
 }
 public Bod insert(Bod b) {
 	try (Connection con = super.connect()) {
 		PreparedStatement stmt = con.prepareStatement(
-				"insert into gebruiker"
-				+ " values(bod_sequence.nextval,"+b.getVoorwerpID()+","+b.getVoorwerpID()+""
+				"insert into bod"
+				+ " values(nextval('bod_sequence'),"+b.getVoorwerpID()+""
 						+ ","+b.getBodBedrag()+","+b.getGebruiker()+",?)");
 		
 		stmt.setTimestamp(1, b.getBodTijd());
-		
+		stmt.executeUpdate();
 		
 		
 		
@@ -63,6 +68,6 @@ public Bod insert(Bod b) {
 		sqle.printStackTrace();
 	}
 	
-	return findByCode(b.getBodID());
+	return b;
 }
 }

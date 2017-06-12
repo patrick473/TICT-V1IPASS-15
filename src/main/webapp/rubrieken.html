@@ -126,11 +126,18 @@
         </ul>
         <div class="row">
     <div >
+        <form id="bodRegistratie">
+
+
         <div  class="input-field col-s3 ">
-                  <input  id="bodBedrag" type="text" class="validate">
+                  <input  id="bodBedrag" name="bodBedrag" type="text" class="validate">
                   <label for="bodBedrag">bod bedrag</label>
 
-    <a class="waves-effect waves-light btn-large  "><i class="material-icons left">mode_edit</i>Bod doen</a>
+                    <button class="btn waves-effect waves-light  submit" id="registerBod"type="submit" name="action">Bod doen
+                    <i class="mdi-content-send right"></i>
+                                      </button>
+                                          </div>
+</form>
     <div>
 
     </div>
@@ -144,7 +151,11 @@
       </div>
       </div>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.alphanum.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/additional-methods.min.js"></script>
+    <script type="text/javascript" src="js/jquery.formatter.min.js" ></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/rubrieken.js"></script>
 </body>

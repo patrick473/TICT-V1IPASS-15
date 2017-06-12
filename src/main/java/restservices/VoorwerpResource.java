@@ -16,7 +16,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import model.Rubriek;
 import model.Voorwerp;
+import dao.RubriekDAO;
 import dao.VoorwerpDAO;
 
 
@@ -24,6 +26,7 @@ import dao.VoorwerpDAO;
 public class VoorwerpResource {
 	
 	VoorwerpDAO vdao = new VoorwerpDAO();
+	RubriekDAO rdao = new RubriekDAO();
 	JsonArrayBuilder jab = Json.createArrayBuilder();
 	JsonObjectBuilder job = Json.createObjectBuilder();
 	
@@ -33,7 +36,7 @@ public class VoorwerpResource {
 	@Produces("application/json")
 	public String selectAll(){
 for (Voorwerp v: vdao.selectAll()){
-			
+			Rubriek r = rdao.findByCode(v.getRubriek());
 			job.add("voorwerpnummer", v.getVoorwerpNummer());
 			job.add("titel",v.getTitel());
 			job.add("beschrijving", v.getBeschrijving());
@@ -47,6 +50,7 @@ for (Voorwerp v: vdao.selectAll()){
 			job.add("veilingGesloten", v.isVeilingGesloten() );
 			job.add("verkoopprijs", v.getVerkoopprijs());
 			job.add("rubriek", v.getRubriek());
+			job.add("rubrieknaam", r.getRubriekNaam());
 			jab.add(job);
 		}
 		JsonArray array = jab.build();
@@ -60,6 +64,7 @@ for (Voorwerp v: vdao.selectAll()){
 	public String findByCode(@PathParam("id")int id){
 		
 		Voorwerp v = vdao.findByCode(id);
+		Rubriek r = rdao.findByCode(v.getRubriek());
 		job.add("voorwerpnummer", v.getVoorwerpNummer());
 		job.add("titel",v.getTitel());
 		job.add("beschrijving", v.getBeschrijving());
@@ -74,6 +79,7 @@ for (Voorwerp v: vdao.selectAll()){
 		job.add("veilingGesloten", v.isVeilingGesloten() );
 		job.add("verkoopprijs", v.getVerkoopprijs());
 		job.add("rubriek", v.getRubriek());
+		job.add("rubrieknaam", r.getRubriekNaam());
 		jab.add(job);
 	
 	JsonArray array = jab.build();
@@ -85,7 +91,7 @@ for (Voorwerp v: vdao.selectAll()){
 	@Path("/rubriek/{rubriek}")
 	@Produces("application/json")
 	public String findByRubriek(@PathParam("rubriek")int rubriek){
-		
+	
 		Voorwerp v = vdao.findByRubriek(rubriek);
 		job.add("voorwerpnummer", v.getVoorwerpNummer());
 		job.add("titel",v.getTitel());

@@ -75,7 +75,33 @@ for (Gebruiker g: gdao.selectAll()){
 	return array.toString();
 		
 	}
+@GET
 	
+	@Path("/username/{id}")
+	@Produces("application/json")
+	public String selectGebruikerByUsername(@PathParam("id")String id){
+		Gebruiker g = gdao.findByUsername(id);
+		job.add("gebruikerID", g.getGebruikersID());
+		job.add("gebruikersnaam",g.getGebruikersNaam());
+		job.add("voornaam", g.getVoorNaam());
+	
+		job.add("achternaam", g.getAchterNaam());
+		job.add("achternaam", g.getAchterNaam());
+		job.add("adres", g.getAdres());
+		job.add("postcode", g.getPostCode());
+		job.add("plaatsnaam", g.getPlaatsNaam());
+		job.add("land", g.getLand());
+		job.add("geboortedag", sdf.format(g.getGeboorteDag()));
+		job.add("email", g.getEmail());
+		job.add("telefoonnummer",g.getTelefoonNummer());
+		job.add("kanverkopen", g.getKanVerkopen());
+		job.add("banknummer", g.getBankNummer());
+		jab.add(job);
+	
+	JsonArray array = jab.build();
+	return array.toString();
+		
+	}
 	@PUT
 	
 	@Path("/{id}/{kanverkopen}")
