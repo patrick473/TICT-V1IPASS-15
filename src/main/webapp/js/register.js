@@ -44,7 +44,8 @@ $("#registerForm").validate({
            geboortedag:{
                required:true,
                minlength:10,
-               maxlength:10
+               maxlength:10,
+               date: true
            },
            email:{
                required:true,
@@ -105,7 +106,8 @@ $("#registerForm").validate({
            },
            geboortedag:{
                required: "Voer je geboortedag in.",
-               minlength: "Een datum bevat minimaal een jaar,datum,dag"
+               minlength: "Een datum bevat minimaal een jaar,datum,dag",
+               date: "voer een valide datum in."
            },
            email:{
                required: "Voer je email in.",
@@ -152,7 +154,7 @@ $("#registerForm").validate({
          console.log(textStatus);
          console.log(errorThrown);
      });
-
+     window.location.replace("login.html");
    }
     });
     $('#geboortedag').formatter({
