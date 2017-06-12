@@ -25,7 +25,7 @@ public class GebruikerResource {
 	JsonObjectBuilder job = Json.createObjectBuilder();
 	 SimpleDateFormat sdf = new SimpleDateFormat("DD-MM-YY");
 	@GET
-	@RolesAllowed({"gebruiker","verkoper"})
+	
 	@Produces("application/json")
 	public String selectAllGebruikers(){
 for (Gebruiker g: gdao.selectAll()){
@@ -49,7 +49,7 @@ for (Gebruiker g: gdao.selectAll()){
 	}
 	
 	@GET
-	@RolesAllowed({"gebruiker","verkoper"})
+	
 	@Path("/{id}")
 	@Produces("application/json")
 	public String selectGebruiker(@PathParam("id")int id){
@@ -77,7 +77,7 @@ for (Gebruiker g: gdao.selectAll()){
 	}
 	
 	@PUT
-	@RolesAllowed({"gebruiker","verkoper"})
+	
 	@Path("/{id}/{kanverkopen}")
 	@Produces("application/json")
 	public String updateGebruiker(@PathParam("id")int id,@FormParam("gebruikersnaam")String gebruikersnaam,
@@ -94,7 +94,7 @@ for (Gebruiker g: gdao.selectAll()){
 		return g.toString();
 	}
 	@PUT
-	@RolesAllowed({"gebruiker","verkoper"})
+	
 	@Path("/{id}")
 	@Produces("application/json")
 	public String updateGebruikerPassword(@PathParam("id")int id,@FormParam("wachtwoord")String wachtwoord){
@@ -104,7 +104,7 @@ for (Gebruiker g: gdao.selectAll()){
 		return g.toString();
 	}
 	@POST
-	@RolesAllowed({"gebruiker","verkoper"})
+
 	@Path("/new/{kanverkopen}")
 	@Produces("application/json")
 	public String newGebruiker(@FormParam("gebruikersnaam")String gebruikersnaam,@FormParam("voornaam")String voornaam,

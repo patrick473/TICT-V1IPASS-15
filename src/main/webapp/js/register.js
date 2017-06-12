@@ -125,7 +125,7 @@ $("#registerForm").validate({
                equalTo: "Wachtwoorden komen niet overeen.",
            },
            banknummer:{
-               minlength: "Een banknummer heeft 18 nummers."
+               minlength: "Een banknummer heeft 18 tekens."
            }
        },
        errorElement : 'div',
@@ -138,9 +138,21 @@ $("#registerForm").validate({
          }
      },
      submitHandler: function(form) {
-       var data = $("#loginForm").serialize();
-
+       var data = $("#registerForm").serialize();
        event.preventDefault();
+       kanVerkopen = false;
+       if ($("#banknummer").val().length > 0){
+           kanVerkopen = true;
+       }
+       console.log(kanVerkopen);
+
+      $.post("http://localhost:4711/onebid/restservices/gebruiker/new/"+kanVerkopen, data, function(response) {
+
+       }).fail(function(jqXHR, textStatus, errorThrown) {
+         console.log(textStatus);
+         console.log(errorThrown);
+     });
+
    }
     });
     $('#geboortedag').formatter({
@@ -155,3 +167,7 @@ $('#telefoonnummer').formatter({
 $('#banknummer').formatter({
       'pattern': '{{aa99aaaa9999999999}}',
 });
+
+$(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+  });

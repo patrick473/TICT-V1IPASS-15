@@ -52,9 +52,11 @@ public ArrayList<Gebruiker> selectAll() {
 }
 
 public Gebruiker findByCode(int id) {
-	return selectGebruikers("SELECT * FROM Gebruiker WHERE Gebruikersid = " + id + "").get(0);
+	return selectGebruikers("SELECT * FROM gebruiker WHERE gebruikersid = " + id + "").get(0);
 }
-
+public Gebruiker findByUsername(String id) {
+	return selectGebruikers("SELECT * FROM gebruiker WHERE gebruikersnaam = '" + id + "'").get(0);
+}
 public Gebruiker update(Gebruiker b) {
 	try (Connection con = super.connect()) {
 		PreparedStatement stmt = con.prepareStatement(
@@ -101,7 +103,7 @@ public Gebruiker insert(Gebruiker b) {
 	try (Connection con = super.connect()) {
 		PreparedStatement stmt = con.prepareStatement(
 				"insert into gebruiker"
-				+ " values(gebruiker_sequence.nextval,'"+b.getGebruikersNaam()+"','"+b.getVoorNaam()+"'"
+				+ " values(nextval('gebruiker_sequence'),'"+b.getGebruikersNaam()+"','"+b.getVoorNaam()+"'"
 						+ ",'"+b.getAchterNaam()+"','"+b.getAdres()+"'"
 								+ ",'"+b.getPostCode()+"','"+b.getPlaatsNaam()+"','"+b.getLand()+"',?,"
 										+ "'"+b.getEmail()+"',"+b.getTelefoonNummer()+",'"+b.getWachtWoord()+""
@@ -115,6 +117,6 @@ public Gebruiker insert(Gebruiker b) {
 		sqle.printStackTrace();
 	}
 	
-	return findByCode(b.getGebruikersID());
+	return findByUsername(b.getGebruikersNaam());
 }
 }
