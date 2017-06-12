@@ -109,17 +109,24 @@ $("#registerForm").validate({
            },
            email:{
                required: "Voer je email in.",
+               maxlength: "Een email mag maximaal tekens bevatten"
            },
            telefoonnummer:{
                required: "Voer je telefoonnummer in.",
+               minlength: "Een telefoonnummer heeft 10 cijfers"
            },
            wachtwoord:{
                required: "Voer je wachtwoord in.",
+               minlength: "Een wachtwoord moet minimaal 8 tekens bevatten",
+               maxlength: "een wachtwoord mag maximaal 50 tekens bevatten"
            },
            wachtwoordsecond:{
                required: "Je moet je wachtwoord nog een keer invoeren.",
                equalTo: "Wachtwoorden komen niet overeen.",
            },
+           banknummer:{
+               minlength: "Een banknummer heeft 18 nummers."
+           }
        },
        errorElement : 'div',
        errorPlacement: function(error, element) {
@@ -138,4 +145,13 @@ $("#registerForm").validate({
     });
     $('#geboortedag').formatter({
           'pattern': '{{9999}}-{{99}}-{{99}}',
+});
+$('#postcode').formatter({
+      'pattern': '{{9999aa}}',
+});
+$('#telefoonnummer').formatter({
+      'pattern': '{{9999999999}}',
+});
+$('#banknummer').formatter({
+      'pattern': '{{aa99aaaa9999999999}}',
 });
