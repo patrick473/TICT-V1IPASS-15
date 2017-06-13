@@ -148,9 +148,10 @@ $("#registerForm").validate({
 
    }
     });
-    
+
 $(document).ready(function(){
     $('.tooltipped').tooltip({delay: 50});
          $('select').material_select();
+         $("#verkoper").val(sessionStorage.getItem("gebruikerID"));
 
   });

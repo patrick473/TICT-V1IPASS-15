@@ -23,8 +23,8 @@
 
             </div>
         </li>
-        <li class="active">
-            <a class="waves-effect " >
+        <li class="">
+            <a class="waves-effect" href="veilingen.html" >
                      <i class="material-icons">search</i>
                      Veilingen bekijken</a>
         </li>
@@ -38,8 +38,8 @@
 
             </div>
         </li>
-        <li>
-            <a class="waves effect" href="#!">
+        <li class="active">
+            <a class="waves effect">
                      <i class="material-icons">queue</i>
                      Voorwerp aanbieden</a>
         </li>
@@ -80,7 +80,7 @@
 
 
         <div id="collectionwrapper" class="col s12">
-            <form id="registerForm" class="col s10 offset-s1 right-alert">
+            <form id="voorwerpForm" class="col s10 offset-s1 right-alert">
               <div class='row'>
 
                     <h4 class="teal-text">One-Bid</h4>
@@ -89,39 +89,39 @@
             <!-- FORM -->
               <div class='row'>
                 <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="De titel is de naam die jouw voorwerp beschrijft.<br /> Jouw titel mag maximaal 30 tekens bevatten." >
-                    <i class=" material-icons prefix">perm_identity</i>
+
                   <input class='validate' type='text' name='titel' id='titel' />
                   <label for='titel'>Titel (verplicht)</label>
                 </div>
               </div>
 
               <div class='row'>
-                  <div class="input-field col s12">
-                            <textarea id="beschrijving" name="beschrijving" class="materialize-textarea" length="500" style="height: 22px;"></textarea>
+                  <div class="input-field col s12 tooltipped" data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Een beschrijving beschrijft jouw voorwerp beter dan je titel. <br />De beschrijving mag maximaal 500 tekens bevatten.">
+                            <textarea id="beschrijving" name="beschrijving" class="materialize-textarea " length="500" style="height: 22px;"></textarea>
                             <label for="beschrijving" class="">Beschrijving (verplicht)</label>
                           </div>
               </div>
               <div class='row'>
-                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je je achternaam in, Deze mag maximaal 60 tekens bevatten. <br />Je achternaam krijgen anderen niet te weten.">
+                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Dit is de suggesterende prijs waarop de veiling start. <br />De startprijs mag maximaal 38 cijfers voor de punt en 2 na de punt bevatten.">
                   <input class='validate' type='text' name='startprijs' id='startprijs' />
                   <label for='startprijs'>startprijs (verplicht)</label>
                 </div>
               </div>
               <div class='row'>
-                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je het adres in waar je momenteel woont, Deze wordt alleen gedeeld met de koper van uw producten. <br /> Je adres mag maximaal 60 tekens bevatten.">
-                    <i class=" material-icons prefix">home</i>
+                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je de manier in waarop je betaald wilt worden. <br /> Dit mag maximaal 40 tekens bevatten">
+
                   <input class='validate' type='text' name='betalingswijze' id='betalingswijze' />
                   <label for='betalingswijze'>betalingswijze (verplicht)</label>
                 </div>
               </div>
               <div class='row'>
-                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je je postcode in, Deze wordt alleen gedeeld met de koper van uw producten.<br /> Uw postcode bestaat uit 4 letters en 2 cijfers.">
+                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je de kosten in die nodig zijn om het voorwerp eventueel te verzenden.<br /> De verzendkosten mogen maximaal 38 cijfers voor de punt en 2 na de punt bevatten.">
                   <input class='validate' type='text' name='verzendkosten' id='verzendkosten' />
                   <label for='verzendkosten'>verzendkosten</label>
                 </div>
               </div>
               <div class='row'>
-                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je de plaatsnaam in van de plaats waar je woont. Uw plaatsnaam mag 60 tekens bevatten <br /> Deze wordt gedeeld met andere gebruikers om een idee te geven waar zij het product kunnen ophalen.">
+                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je de manier in waarop het voorwerp bij de koper komt.<br /> Dit mag maximaal 60 tekens bevatten.">
                   <input class='validate' type='text' name='verzendinstructie' id='verzendinstructie' />
                   <label for='verzendinstructie'>verzendinstructie (verplicht)</label>
                 </div>
@@ -133,7 +133,7 @@
                 </div>
               </div>
               <div class='row'>
-                   <div class="input-field col s12">
+                   <div class="input-field col s12" data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier kies je een rubriek uit waar jouw voorwerp in voor komt.">
 
                  <select  class="validate"id="rubriek">
                     <optgroup label="Antiek en kunst" data-rubrieknummer="1">

@@ -102,10 +102,9 @@ function showUpperhideUnder(){
 
 
 
-
-
-
-
+$("bodRegistratie").submit(function(e) {
+    e.preventDefault();
+});
 
 
 
