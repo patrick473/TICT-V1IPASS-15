@@ -77,38 +77,26 @@ public class VoorwerpDAO extends BaseDAO{
 
 	public Voorwerp insert(Voorwerp b) {
 		try (Connection con = super.connect()) {
-			if(b.isVeilingGesloten() == true){
+			
+		
 				PreparedStatement stmt = con.prepareStatement(
 						"insert into voorwerp"
-						+ " values(voorwerp_sequence.nextval,'"+b.getTitel()+"','"+b.getBeschrijving()+"'"
+						+ " values(nextval('voorwerp_sequence'),'"+b.getTitel()+"','"+b.getBeschrijving()+"'"
 								+ ","+b.getStartPrijs()+",'"+b.getBetalingswijze()+"',?"
-										+ ",?,"+b.getVerzendkosten()+",'"+b.getVerzendinstructie()+"',"+b.getVerkoper()+","
-												+ ""+b.getKoper()+"',true,"+b.getVerkoopprijs()+""
+										+ ",null,"+b.getVerzendkosten()+",'"+b.getVerzendinstructie()+"',"+b.getVerkoper()+","
+												+ ""+b.getKoper()+",false,"+b.getVerkoopprijs()+""
 														+ ","+b.getRubriek()+")");
 				
 				stmt.setTimestamp(1,b.getBeginTijd());
-				stmt.setTimestamp(2, b.getEindTijd());
+
 				stmt.executeUpdate();
-			}
-			else{
-				PreparedStatement stmt = con.prepareStatement(
-						"insert into voorwerp"
-						+ " values(voorwerp_sequence.nextval,'"+b.getTitel()+"','"+b.getBeschrijving()+"'"
-								+ ","+b.getStartPrijs()+",'"+b.getBetalingswijze()+"',?"
-										+ ",?,"+b.getVerzendkosten()+",'"+b.getVerzendinstructie()+"',"+b.getVerkoper()+","
-												+ ""+b.getKoper()+"',false,"+b.getVerkoopprijs()+""
-														+ ","+b.getRubriek()+")");
-				
-				stmt.setTimestamp(1,b.getBeginTijd());
-				stmt.setTimestamp(2, b.getEindTijd());
-				stmt.executeUpdate();
-			}
+			
 			
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
 		
-		return findByCode(b.getVoorwerpNummer());
+		return b;
 	}
 
 	public boolean delete(int id){
