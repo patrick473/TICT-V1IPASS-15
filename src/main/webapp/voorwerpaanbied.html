@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Onebid | Veilingen</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" rel="stylesheet" href="css/voorwerpaanbied.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <ul id="slide-out" class="side-nav fixed">
+        <li>
+            <div class="userMenu">
+                <div class="background">
+
+                </div>
+
+                <a href="#!name"><span class="username">John Doe</span></a>
+
+
+            </div>
+        </li>
+        <li class="active">
+            <a class="waves-effect " >
+                     <i class="material-icons">search</i>
+                     Veilingen bekijken</a>
+        </li>
+        <li class="">
+            <a class="waves-effect" href="rubrieken.html">
+                     <i class="material-icons">view_module</i>
+                     Rubrieken</a>
+        </li>
+        <li>
+            <div class="divider">
+
+            </div>
+        </li>
+        <li>
+            <a class="waves effect" href="#!">
+                     <i class="material-icons">queue</i>
+                     Voorwerp aanbieden</a>
+        </li>
+        <li>
+            <a class="waves-effect" href="#!">
+                     <i class="material-icons">view_list</i>
+                     Eigen veilingen bekijken</a>
+        </li>
+        <li>
+            <div class="divider">
+
+            </div>
+        </li>
+        <li>
+            <a class="waves-effect" href="#!">
+                     <i class="material-icons">power_settings_new</i>
+                     Uitloggen</a>
+        </li>
+    </ul>
+
+    <!-- END OF SIDENAV -->
+    <!-- MAIN NAV -->
+    <div class="navbar-fixed">
+
+        <nav>
+            <div class="nav-wrapper teal darken-1">
+                <a href="#" class="brand-logo right">One Bid</a>
+
+                <ul id="nav-mobile" class="left ">
+                    <li><a href="#" data-activates="slide-out" class="sideNavDropOut"><i class="material-icons">menu</i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- END OF MAIN NAV -->
+
+    <div class="row">
+
+
+        <div id="collectionwrapper" class="col s12">
+            <form id="registerForm" class="col s10 offset-s1 right-alert">
+              <div class='row'>
+
+                    <h4 class="teal-text">One-Bid</h4>
+
+              </div>
+            <!-- FORM -->
+              <div class='row'>
+                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="De titel is de naam die jouw voorwerp beschrijft.<br /> Jouw titel mag maximaal 30 tekens bevatten." >
+                    <i class=" material-icons prefix">perm_identity</i>
+                  <input class='validate' type='text' name='titel' id='titel' />
+                  <label for='titel'>Titel (verplicht)</label>
+                </div>
+              </div>
+
+              <div class='row'>
+                  <div class="input-field col s12">
+                            <textarea id="beschrijving" name="beschrijving" class="materialize-textarea" length="500" style="height: 22px;"></textarea>
+                            <label for="beschrijving" class="">Beschrijving (verplicht)</label>
+                          </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je je achternaam in, Deze mag maximaal 60 tekens bevatten. <br />Je achternaam krijgen anderen niet te weten.">
+                  <input class='validate' type='text' name='startprijs' id='startprijs' />
+                  <label for='startprijs'>startprijs (verplicht)</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je het adres in waar je momenteel woont, Deze wordt alleen gedeeld met de koper van uw producten. <br /> Je adres mag maximaal 60 tekens bevatten.">
+                    <i class=" material-icons prefix">home</i>
+                  <input class='validate' type='text' name='betalingswijze' id='betalingswijze' />
+                  <label for='betalingswijze'>betalingswijze (verplicht)</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je je postcode in, Deze wordt alleen gedeeld met de koper van uw producten.<br /> Uw postcode bestaat uit 4 letters en 2 cijfers.">
+                  <input class='validate' type='text' name='verzendkosten' id='verzendkosten' />
+                  <label for='verzendkosten'>verzendkosten</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je de plaatsnaam in van de plaats waar je woont. Uw plaatsnaam mag 60 tekens bevatten <br /> Deze wordt gedeeld met andere gebruikers om een idee te geven waar zij het product kunnen ophalen.">
+                  <input class='validate' type='text' name='verzendinstructie' id='verzendinstructie' />
+                  <label for='verzendinstructie'>verzendinstructie (verplicht)</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s12 hide' >
+                  <input class='validate' type='text' name='verkoper' id='verkoper' />
+                  <label for='verkoper'>verkoper </label>
+                </div>
+              </div>
+              <div class='row'>
+                   <div class="input-field col s12">
+
+                 <select  class="validate"id="rubriek">
+                    <optgroup label="Antiek en kunst" data-rubrieknummer="1">
+                       <option value="2">Antiek | Overig</option>
+                       <option value="3">Antiek | Meubels</option>
+                       <option value="4">Kunst | Overig</option>
+                       <option value="5">Kunst | Schilderijen</option>
+                    </optgroup>
+                    <optgroup label="Audio's, Tv en Foto" data-rubrieknummer="6">
+                       <option value="7">Fotografie</option>
+                       <option value="8">Overig</option>
+                       <option value="9">Optisch apperatuur</option>
+                       <option value="10">Audio | Draagbaar</option>
+                       <option value="11">Audio</option>
+                    </optgroup>
+                    <optgroup label="Voertuigen" data-rubrieknummer="12">
+                       <option value="13">Auto's</option>
+                       <option value="14">Fietsen</option>
+                       <option value="15">Motoren</option>
+                       <option value="16">Boten</option>
+                       <option value="17">Brommers</option>
+                       <option value="18">Overig</option>
+                    </optgroup>
+                    <optgroup label="Cd's en Dvd's" data-rubrieknummer="19">
+                       <option value="20">Cd's</option>
+                       <option value="21">Vynil's</option>
+                       <option value="22">Dvd's</option>
+                       <option value="23">Blu-Rays</option>
+                       <option value="24">Overig</option>
+                    </optgroup>
+                    <optgroup label="Computers" data-rubrieknummer="25">
+                       <option value="26">tablet's</option>
+                       <option value="27">Destkop's</option>
+                       <option value="28">Randapparatuur</option>
+                       <option value="29">laptop's</option>
+                       <option value="30">Overig</option>
+                    </optgroup>
+                    <optgroup label="Kleding" data-rubrieknummer="31">
+                       <option value="32">Dames</option>
+                       <option value="33">Mannen</option>
+                       <option value="34">Overig</option>
+                    </optgroup>
+                    <optgroup label="Huis en Inrichting" data-rubrieknummer="35">
+                       <option value="36">Overig</option>
+                       <option value="37">Slaapkamer</option>
+                       <option value="38">Badkamer</option>
+                       <option value="39">Banken en stoelen</option>
+                       <option value="40">Kasten</option>
+                       <option value="41">Tafelss</option>
+                    </optgroup>
+                    <optgroup label="Hobby en Vrije Tijd" data-rubrieknummer="42">
+                       <option value="43">Spelcomputers en Games</option>
+                       <option value="44">Verzamelingen</option>
+                       <option value="45">Sport en Fitness</option>
+                        <option value="46">Overig</option>
+                    </optgroup>
+                    <optgroup label="Elektronica" data-rubrieknummer="47">
+                       <option value="48">Muziek Instrumenten</option>
+                       <option value="49">Versterkers en Speakers</option>
+                       <option value="50">Telefoons</option>
+                       <option value="51">Kabels</option>
+                       <option value="52">Overig</option>
+                    </optgroup>
+                    <optgroup label="Overig" data-rubrieknummer="53">
+                       <option value="54">Overig</option>
+
+                    </optgroup>
+                 </select>
+                 <label>Selecteer een rubriek</label>
+             </div>
+              </div>
+
+              <br />
+
+              <!-- SUBMIT -->
+              <center>
+                <div class="row">
+                    <div class="input-field col s12" >
+                      <button class="btn waves-effect waves-light  submit" id="loginButton"type="submit" name="action">Registreren
+                      <i class="mdi-content-send right"></i>
+                                        </button>
+                                            </div>
+                </div>
+              </center>
+            </form>
+        </div>
+      <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="js/jquery.alphanum.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+      <script type="text/javascript" src="js/additional-methods.min.js"></script>
+      <script type="text/javascript" src="js/jquery.formatter.min.js" ></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/voorwerpaanbied.js"></script>
+</body>
+
+</html>

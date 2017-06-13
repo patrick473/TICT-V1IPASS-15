@@ -5,7 +5,7 @@ function checkWidth(init){
         $('#collectionwrapper').addClass('offset-s2');
         $('#collectionwrapper').addClass('s9');
         $('#collectionwrapper').removeClass('s12');
-
+        console.log(sessionStorage);
     }
     else {
         if (!init) {
@@ -37,6 +37,9 @@ $("#itemCollection").delegate('a', 'click', function() {
     voorwerpnummer = $(this).data('voorwerpnummer');
     console.log(voorwerpnummer);
     loadModal(voorwerpnummer);
+    $('#veilingpopup').modal();
+
+ $('#veilingpopup').modal('open');
 
 });
 
@@ -95,11 +98,16 @@ console.log("test");
 $("#biedingencollection").append('<li class="collection-item">er is nog niet op geboden . Jij kan het verschil maken</li>');
 }
 });
-
+  sessionStorage.setItem("huidigItem", voorwerpnummer);
 $.get("http://localhost:4711/onebid/restservices/bod/voorwerp/hoogste/"+voorwerpnummer, (data) => {
 $(data).each(function(index) {
+    sessionStorage.setItem("hoogste", this.bodBedrag);
+    console.log(sessionStorage.getItem("hoogste"));
+    hoogste = parseInt(sessionStorage.getItem("hoogste"));
+    console.log(hoogste);
     $("#biedingencollection").data('hoogste', this.bodBedrag);
     console.log($("#biedingencollection").data('hoogste'));
+
 });
 
 });
@@ -107,3 +115,59 @@ $(data).each(function(index) {
 //HIERBOVEN AllE SElECT DINGEN
 
 //HIERONDER DE REST
+$("input, textarea").alphanum({
+    allow              : '.1234567890',
+    disallow           : ',":',
+    allowSpace         : false,
+    allowNumeric       : true,
+    allowUpper         : false,
+    allowLower         : false,
+    allowCaseless      : false,
+    allowLatin         : true,
+    allowOtherCharSets : true,
+    forceUpper         : true,
+    forceLower         : true,
+    maxLength          : NaN
+});
+
+$("#bodRegistratie").validate({
+
+       rules: {
+           bodBedrag: {
+               required: true,
+               min: parseInt(sessionStorage.getItem("hoogste")),
+           },
+
+
+       },
+
+       messages: {
+           bodBedrag:{
+               required: "voer een bod in.",
+               minStrict: "bedrag moet hoger zijn dan het huidige hoogste bedrag."
+
+           },
+       },
+       errorElement : 'div',
+       errorPlacement: function(error, element) {
+         var placement = $(element).data('error');
+         if (placement) {
+           $(placement).append(error);
+         } else {
+           error.insertAfter(element);
+         }
+       },
+       submitHandler: function(form) {
+         var data = $("#bodRegistratie").serialize();
+         var bod=  parseInt($("#bodBedrag").val());
+         event.preventDefault();
+         console.log(sessionStorage);
+         $.post('http://localhost:4711/onebid/restservices/bod/'+sessionStorage.getItem("huidigItem")+'/'+sessionStorage.getItem("gebruikerID")+'/'+bod, function(response, textStatus, xhr) {
+            console.log(response);
+        });
+
+
+
+
+  }
+    });
