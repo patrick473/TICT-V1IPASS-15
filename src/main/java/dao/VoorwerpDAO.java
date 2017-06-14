@@ -44,17 +44,17 @@ public class VoorwerpDAO extends BaseDAO{
 		}
 
 	public ArrayList<Voorwerp> selectAll() {
-		return selectVoorwerpen("SELECT * FROM voorwerp");
+		return selectVoorwerpen("SELECT * FROM voorwerp where veilinggesloten = false");
 	}
 
 	public Voorwerp findByCode(int id) {
-		return selectVoorwerpen("SELECT * FROM voorwerp WHERE voorwerpnummer = " + id + " and veilinggesloten = false").get(0);
+		return selectVoorwerpen("SELECT * FROM voorwerp WHERE voorwerpnummer = " + id + "").get(0);
 	}
 	public ArrayList<Voorwerp> findByRubriek(int rubriek) {
 		return selectVoorwerpen("SELECT * FROM voorwerp WHERE rubriek = " + rubriek + " and veilinggesloten = false");
 	}
 	public ArrayList<Voorwerp> findByUser(int verkoper) {
-		return selectVoorwerpen("SELECT * FROM voorwerp WHERE verkoper= " + verkoper + " and veilinggesloten = false");
+		return selectVoorwerpen("SELECT * FROM voorwerp WHERE verkoper= " + verkoper + " ");
 	}
 
 	public Voorwerp update(Voorwerp b) {

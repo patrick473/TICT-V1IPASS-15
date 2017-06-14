@@ -58,21 +58,38 @@ $("#loginForm").validate({
            console.log(errorThrown);
          });
          gebruikersnaam = $("#gebruikersnaam").val();
+         setTimeout(function(){$.ajax({
+             url: "http://localhost:4711/onebid/restservices/gebruiker/username/"+gebruikersnaam,
+             type: 'GET',
+             beforeSend: function (xhr) {
+            var token = window.sessionStorage.getItem("sessionToken");
+            xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+        }
 
-         $.get("http://localhost:4711/onebid/restservices/gebruiker/username/"+gebruikersnaam, (response) =>{
-            console.log(response);
-            $(response).each(function(index) {
-                console.log(this);
-                sessionStorage.setItem("gebruikerID",this.gebruikerID);
-                sessionStorage.setItem("kanverkopen", this.kanverkopen);
-            });
+         })
+         .done(function(response) {
+
+              $(response).each(function(index) {
+                  console.log(this);
+                  sessionStorage.setItem("gebruikerID",this.gebruikerID);
+                  sessionStorage.setItem("kanverkopen", this.kanverkopen);
+              });
 
 
-                console.log(sessionStorage.getItem("gebruikerID"));
-                console.log(sessionStorage.getItem("kanverkopen"));
+                  console.log(sessionStorage.getItem("gebruikerID"));
+                  console.log(sessionStorage.getItem("kanverkopen"));
+                  setTimeout(function(){window.location.replace("veilingen.html"); }, 1000);
 
+         })
+         .fail(function() {
+             console.log("error");
+         })
+         .always(function() {
+             console.log("complete");
          });
-           setTimeout(function(){window.location.replace("veilingen.html"); }, 2000);
+  }, 1000);
+
+
 
 
 
