@@ -16,8 +16,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import model.Bod;
 import model.Rubriek;
 import model.Voorwerp;
+import dao.BodDAO;
 import dao.RubriekDAO;
 import dao.VoorwerpDAO;
 
@@ -27,6 +29,7 @@ public class VoorwerpResource {
 	
 	VoorwerpDAO vdao = new VoorwerpDAO();
 	RubriekDAO rdao = new RubriekDAO();
+	BodDAO bdao = new BodDAO();
 	JsonArrayBuilder jab = Json.createArrayBuilder();
 	JsonObjectBuilder job = Json.createObjectBuilder();
 	
@@ -92,7 +95,7 @@ for (Voorwerp v: vdao.selectAll()){
 	@Produces("application/json")
 	public String findByRubriek(@PathParam("rubriek")int rubriek){
 	
-		Voorwerp v = vdao.findByRubriek(rubriek);
+		for( Voorwerp v : vdao.findByRubriek(rubriek)){
 		job.add("voorwerpnummer", v.getVoorwerpNummer());
 		job.add("titel",v.getTitel());
 		job.add("beschrijving", v.getBeschrijving());
@@ -108,7 +111,34 @@ for (Voorwerp v: vdao.selectAll()){
 		job.add("verkoopprijs", v.getVerkoopprijs());
 		job.add("rubriek", v.getRubriek());
 		jab.add(job);
+		}
+	JsonArray array = jab.build();
+	return array.toString();
+		
+	}
+@GET
 	
+	@Path("/gebruiker/{id}")
+	@Produces("application/json")
+	public String findByUser(@PathParam("id")int id){
+	
+		for( Voorwerp v : vdao.findByUser(id)){
+		job.add("voorwerpnummer", v.getVoorwerpNummer());
+		job.add("titel",v.getTitel());
+		job.add("beschrijving", v.getBeschrijving());
+		job.add("startprijs", v.getStartPrijs() );
+		job.add("betalingswijze", v.getBetalingswijze());
+		job.add("begintijd", v.getBeginTijd().getTime());
+		
+		job.add("verzendkosten", v.getVerzendkosten());
+		job.add("verzendinstructie", v.getVerzendinstructie());
+		job.add("verkoper", v.getVerkoper());
+		job.add("koper", v.getKoper());
+		job.add("veilingGesloten", v.isVeilingGesloten() );
+		job.add("verkoopprijs", v.getVerkoopprijs());
+		job.add("rubriek", v.getRubriek());
+		jab.add(job);
+		}
 	JsonArray array = jab.build();
 	return array.toString();
 		
@@ -138,14 +168,16 @@ for (Voorwerp v: vdao.selectAll()){
 
 	@Path("/end/{id}")
 	@Produces("application/json")
-	public String endVeiling(@PathParam("id")int id,@FormParam("koper")int koper,
-		@FormParam("verkoopprijs")double verkoopprijs){
+	public String endVeiling(@PathParam("id")int id){
 		
 		Timestamp now = new Timestamp(System.currentTimeMillis());
-		
+		Voorwerp v1 = vdao.findByCode(id);
+		Bod b= bdao.findhighestBodByVoorwerp(v1.getVoorwerpNummer());
+		int  koper = b.getGebruiker();
+		double verkoopprijs = b.getBodBedrag();
 		Voorwerp v = new Voorwerp(id,now,koper,true,verkoopprijs);
 			vdao.update(v);
-		return v.toString();
+		return null;
 	}
 	@DELETE
 
@@ -154,7 +186,8 @@ for (Voorwerp v: vdao.selectAll()){
 	public String deleteVoorwerp(@PathParam("id")int id){
 		try{
 		vdao.delete(id);
-		return "succes";
+		System.out.println("succes");
+		return null;
 		}
 		catch(Error e){
 			System.out.println(e);

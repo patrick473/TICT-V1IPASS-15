@@ -149,8 +149,7 @@ $(document).ready(function(){
                   $.post("http://localhost:4711/onebid/restservices/voorwerp/new/", data, function(response) {
                       console.log(response);
                    }).fail(function(jqXHR, textStatus, errorThrown) {
-                     console.log(textStatus);
-                     console.log(errorThrown);
+                     
                  });
 
                }

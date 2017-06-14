@@ -34,6 +34,7 @@ $(document).ready(function() {
 
 $("#itemCollection").delegate('a', 'click', function() {
     voorwerpnummer = $(this).data('voorwerpnummer');
+    sessionStorage.setItem("voorwerpnummer",voorwerpnummer);
     console.log(voorwerpnummer);
     loadModal(voorwerpnummer);
     $('#veilingpopup').modal();
@@ -43,7 +44,7 @@ $("#itemCollection").delegate('a', 'click', function() {
 });
 
 function init() {
-    $.get("http://localhost:4711/onebid/restservices/voorwerp", (data) => {
+    $.get("http://localhost:4711/onebid/restservices/voorwerp/gebruiker/"+sessionStorage.getItem("gebruikerID"), (data) => {
 
             $(data).each(function(index) {
                 $("#itemCollection").append('<a id="voorwerp' + this.voorwerpnummer + '"data-voorwerpnummer="' + this.voorwerpnummer + '"class="collection-item avatar"> ' +
@@ -93,7 +94,7 @@ function loadModal(voorwerpnummer) {
             });
         } else {
             console.log("test");
-            $("#biedingencollection").append('<li class="collection-item">er is nog niet op geboden . Jij kan het verschil maken</li>');
+            $("#biedingencollection").append('<li class="collection-item">er is nog niet op geboden </li>');
         }
     });
     sessionStorage.setItem("huidigItem", voorwerpnummer);
@@ -110,6 +111,42 @@ function loadModal(voorwerpnummer) {
 
     });
 }
+$("#verwijder").click(function(event) {
+    $.ajax({
+        url: 'http://localhost:4711/onebid/restservices/voorwerp/delete/'+sessionStorage.getItem("voorwerpnummer"),
+        type: 'delete',
+
+    })
+    .done(function() {
+        Materialize.toast('Voorwerp verwijderd.', 4000);
+        setTimeout(function(){window.location.reload(); }, 1000);
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+
+});
+$("#eindigVeiling").click(function(event) {
+    $.ajax({
+        url: 'http://localhost:4711/onebid/restservices/voorwerp/end/'+sessionStorage.getItem("voorwerpnummer"),
+        type: 'put',
+
+    })
+    .done(function() {
+        Materialize.toast('Veiling gestopt.', 4000);
+        setTimeout(function(){window.location.reload(); }, 1000);
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+
+});
 //HIERBOVEN AllE SElECT DINGEN
 
 //HIERONDER DE REST
