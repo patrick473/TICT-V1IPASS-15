@@ -82,11 +82,11 @@ $(document).ready(function(){
                    rules: {
                        titel: {
                            required: true,
-                           maxlength:  30
+                           maxlength:  60
                        },
                        beschrijving:{
                            required: true,
-                           maxlength: 500
+                           maxlength: 1000
                        },
                        startprijs:{
                            required: true,
@@ -108,12 +108,12 @@ $(document).ready(function(){
                    messages: {
                        titel:{
                            required: "Om een voorwerp goed te kunnen verkopen is een titel nodig.",
-                           maxlength: "Je titel mag maximaal 30 tekens bevatten.",
+                           maxlength: "Je titel mag maximaal 60 tekens bevatten.",
 
                        },
                        beschrijving:{
                            required: "Voer een beschrijving in van het voorwerp.",
-                           maxlength: "De beschrijving mag maximaal 500 tekens bevatten."
+                           maxlength: "De beschrijving mag maximaal 1000 tekens bevatten."
                        },
                        startprijs:{
                            required: "De veiling moet ergens beginnen, voer een start prijs in.",
@@ -146,11 +146,27 @@ $(document).ready(function(){
                    var data = $("#voorwerpForm").serialize();
                    console.log(data);
                    event.preventDefault();
-                  $.post("http://localhost:4711/onebid/restservices/voorwerp/new/", data, function(response) {
-                      console.log(response);
-                   }).fail(function(jqXHR, textStatus, errorThrown) {
-                     
-                 });
+                   $.ajax({
+                       url: "http://localhost:4711/onebid/restservices/voorwerp/new/",
+                       type: 'POST',
+                       data:data,
+                       beforeSend: function (xhr) {
+                      var token = window.sessionStorage.getItem("sessionToken");
+                      xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+                  }
+
+                   })
+                   .done(function() {
+                       console.log(response);
+                       Materialize.toast('Voorwerp is geplaatst ', 4000);
+                       setTimeout(function(){window.location.replace("eigenveilingen.html"); }, 2000);
+                   })
+                   .fail(function() {
+                       console.log("error");
+                   })
+                   .always(function() {
+                       console.log("complete");
+                   });
 
                }
                 });

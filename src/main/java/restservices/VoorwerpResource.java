@@ -117,7 +117,7 @@ for (Voorwerp v: vdao.selectAll()){
 		
 	}
 @GET
-@RolesAllowed({"verkoper","gebruiker"})
+@RolesAllowed("verkoper")
 	@Path("/gebruiker/{id}")
 	@Produces("application/json")
 	public String findByUser(@PathParam("id")int id){
@@ -144,7 +144,7 @@ for (Voorwerp v: vdao.selectAll()){
 		
 	}
 	@POST
-	@RolesAllowed({"verkoper","gebruiker"})
+	@RolesAllowed("verkoper")
 	@Path("/new")
 	@Produces("application/json")
 	public String insertVoorwerp(@FormParam("titel") String titel,
@@ -165,7 +165,7 @@ for (Voorwerp v: vdao.selectAll()){
 	}
 	
 	@PUT
-	@RolesAllowed({"verkoper","gebruiker"})
+	@RolesAllowed("verkoper")
 	@Path("/end/{id}")
 	@Produces("application/json")
 	public String endVeiling(@PathParam("id")int id){
@@ -180,7 +180,7 @@ for (Voorwerp v: vdao.selectAll()){
 		return null;
 	}
 	@DELETE
-	@RolesAllowed({"verkoper","gebruiker"})
+	@RolesAllowed("verkoper")
 	@Produces("application/json")
 	@Path("/delete/{id}")
 	public String deleteVoorwerp(@PathParam("id")int id){
