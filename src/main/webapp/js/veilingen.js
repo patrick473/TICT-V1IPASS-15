@@ -1,3 +1,5 @@
+var hoogste = 0;
+
 function checkWidth(init) {
     /*If browser resized, check width again */
     if ($(window).width() > 500) {
@@ -36,7 +38,8 @@ $("#itemCollection").delegate('a', 'click', function() {
     voorwerpnummer = $(this).data('voorwerpnummer');
     console.log(voorwerpnummer);
     loadModal(voorwerpnummer);
-    $('#veilingpopup').modal();
+    $('#veilingpopup').modal({
+    });
 
     $('#veilingpopup').modal('open');
 
@@ -78,6 +81,7 @@ function init() {
 
 function loadModal(voorwerpnummer) {
     $("#biedingencollection").empty();
+    $("#bodBedrag").val('');
     $.ajax({
             url: "http://localhost:4711/onebid/restservices/voorwerp/" + voorwerpnummer,
             type: 'GET',
@@ -95,61 +99,7 @@ function loadModal(voorwerpnummer) {
                 $("#modalBeschrijving").text(this.beschrijving);
 
             });
-            $.ajax({
-                    url: "http://localhost:4711/onebid/restservices/bod/voorwerp/" + voorwerpnummer,
-                    type: 'GET',
-                    beforeSend: function(xhr) {
-                        var token = window.sessionStorage.getItem("sessionToken");
-                        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-                    }
-                })
-                .done(function() {
-                    var count = Object.keys(data).length;
-                    if (count > 0) {
-                        console.log("testt");
-                        $(data).each(function(index) {
 
-                            $("#biedingencollection").append('<li id="bod' + this.bodID + '"class="collection-item"><span>' + this.gebruiker + '</span> € <span>' + this.bodBedrag + '</span>,-</li>');
-
-                        });
-                    } else {
-                        console.log("test");
-                        $("#biedingencollection").append('<li class="collection-item">er is nog niet op geboden . Jij kan het verschil maken</li>');
-                    }
-                    sessionStorage.setItem("huidigItem", voorwerpnummer);
-
-                })
-                .fail(function() {
-                    console.log("error");
-                })
-                .always(function() {
-                    console.log("complete");
-                });
-            $.ajax({
-                    url: "http://localhost:4711/onebid/restservices/bod/voorwerp/hoogste/" + voorwerpnummer,
-                    type: 'GET',
-                    beforeSend: function(xhr) {
-                        var token = window.sessionStorage.getItem("sessionToken");
-                        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-                    }
-                })
-                .done(function(data) {
-                    $(data).each(function(index) {
-                        sessionStorage.setItem("hoogste", this.bodBedrag);
-                        console.log(sessionStorage.getItem("hoogste"));
-                        hoogste = parseInt(sessionStorage.getItem("hoogste"));
-                        console.log(hoogste);
-                        $("#biedingencollection").data('hoogste', this.bodBedrag);
-                        console.log($("#biedingencollection").data('hoogste'));
-
-                    });
-                })
-                .fail(function() {
-                    console.log("error");
-                })
-                .always(function() {
-                    console.log("complete");
-                });
 
         })
         .fail(function() {
@@ -158,11 +108,69 @@ function loadModal(voorwerpnummer) {
         .always(function() {
             console.log("complete");
         });
+        $.ajax({
+                url: "http://localhost:4711/onebid/restservices/bod/voorwerp/" + voorwerpnummer,
+                type: 'GET',
+                beforeSend: function(xhr) {
+                    var token = window.sessionStorage.getItem("sessionToken");
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                }
+            })
+            .done(function(data) {
+                var count = Object.keys(data).length;
+                if (count > 0) {
+                    console.log("testt");
+                    $(data).each(function(index) {
+
+                        $("#biedingencollection").append('<li id="bod' + this.bodID + '"class="collection-item"><span>' + this.gebruiker + '</span> € <span>' + this.bodBedrag + '</span>,-</li>');
+
+                    });
+                } else {
+                    console.log("test");
+                    $("#biedingencollection").append('<li class="collection-item">er is nog niet op geboden . Jij kan het verschil maken</li>');
+                }
+                sessionStorage.setItem("huidigItem", voorwerpnummer);
+
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+        $.ajax({
+                url: "http://localhost:4711/onebid/restservices/bod/voorwerp/hoogste/" + voorwerpnummer,
+                type: 'GET',
+                beforeSend: function(xhr) {
+                    var token = window.sessionStorage.getItem("sessionToken");
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                }
+            })
+            .done(function(data) {
+                $(data).each(function(index) {
+                    hoogste = this.bodBedrag;
+                    sessionStorage.setItem("hoogste", this.bodBedrag);
+
+                    console.log(sessionStorage.getItem("hoogste"));
+                    hoogste = parseInt(sessionStorage.getItem("hoogste"));
+                    console.log(hoogste);
+                    $("#biedingencollection").data('hoogste', this.bodBedrag);
+                    console.log($("#biedingencollection").data('hoogste'));
+
+                });
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
 
 }
 //HIERBOVEN AllE SElECT DINGEN
 
 //HIERONDER DE REST
+$(document).ready(function() {
 $("input, textarea").alphanum({
     allow: '.1234567890',
     disallow: ',":',
@@ -183,7 +191,7 @@ $("#bodRegistratie").validate({
     rules: {
         bodBedrag: {
             required: true,
-            min: parseInt(sessionStorage.getItem("hoogste")),
+            min: hoogste,
         },
 
 
@@ -210,12 +218,63 @@ $("#bodRegistratie").validate({
         var bod = parseInt($("#bodBedrag").val());
         event.preventDefault();
         console.log(sessionStorage);
-        $.post('http://localhost:4711/onebid/restservices/bod/' + sessionStorage.getItem("huidigItem") + '/' + sessionStorage.getItem("gebruikerID") + '/' + bod, function(response, textStatus, xhr) {
+        $.ajax({
+            url: 'http://localhost:4711/onebid/restservices/bod/' + sessionStorage.getItem("huidigItem") + '/' + sessionStorage.getItem("gebruikerID") + '/' + bod,
+            type: 'POST',
+            data: data,
+            beforeSend: function (xhr) {
+           var token = window.sessionStorage.getItem("sessionToken");
+           xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+       }
+        })
+        .done(function() {
             console.log(response);
+            console.log("success");
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
         });
 
 
 
 
+
+
+    }
+});
+});
+$("#registerBod").click(function(event) {
+    if (parseInt($("#bodBedrag").val())>sessionStorage.getItem("hoogste")){
+        Materialize.toast('Bod gedaan', 4000);
+        var data = $("#bodRegistratie").serialize();
+        var bod = parseInt($("#bodBedrag").val());
+        event.preventDefault();
+        console.log(sessionStorage);
+        $.ajax({
+            url: 'http://localhost:4711/onebid/restservices/bod/' + sessionStorage.getItem("huidigItem") + '/' + sessionStorage.getItem("gebruikerID") + '/' + bod,
+            type: 'POST',
+            data: data,
+            beforeSend: function (xhr) {
+           var token = window.sessionStorage.getItem("sessionToken");
+           xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
+       }
+        })
+        .done(function() {
+            console.log(response);
+            console.log("success");
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+          setTimeout(function(){location.reload(); }, 2000);location.reload();
+    }
+    else {
+        Materialize.toast('Bod lager dan het huidige hoogste bod ', 4000);
     }
 });
