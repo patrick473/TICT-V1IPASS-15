@@ -46,6 +46,9 @@ public class VoorwerpDAO extends BaseDAO{
 	public ArrayList<Voorwerp> selectAll() {
 		return selectVoorwerpen("SELECT * FROM voorwerp where veilinggesloten = false");
 	}
+	public ArrayList<Voorwerp> selectAllWhereNotUser(int verkoper) {
+		return selectVoorwerpen("SELECT * FROM voorwerp where veilinggesloten = false and verkoper != "+verkoper+"");
+	}
 
 	public Voorwerp findByCode(int id) {
 		return selectVoorwerpen("SELECT * FROM voorwerp WHERE voorwerpnummer = " + id + "").get(0);

@@ -138,6 +138,7 @@ function loadModal(voorwerpnummer) {
             .always(function() {
                 console.log("complete");
             });
+            $("#biedingencollection").data('hoogste',0);
         $.ajax({
                 url: "http://localhost:4711/onebid/restservices/bod/voorwerp/hoogste/" + voorwerpnummer,
                 type: 'GET',
@@ -154,6 +155,7 @@ function loadModal(voorwerpnummer) {
                     console.log(sessionStorage.getItem("hoogste"));
                     hoogste = parseInt(sessionStorage.getItem("hoogste"));
                     console.log(hoogste);
+
                     $("#biedingencollection").data('hoogste', this.bodBedrag);
                     console.log($("#biedingencollection").data('hoogste'));
 
@@ -214,40 +216,12 @@ $("#bodRegistratie").validate({
         }
     },
     submitHandler: function(form) {
-        var data = $("#bodRegistratie").serialize();
-        var bod = parseInt($("#bodBedrag").val());
-        event.preventDefault();
-        console.log(sessionStorage);
-        $.ajax({
-            url: 'http://localhost:4711/onebid/restservices/bod/' + sessionStorage.getItem("huidigItem") + '/' + sessionStorage.getItem("gebruikerID") + '/' + bod,
-            type: 'POST',
-            data: data,
-            beforeSend: function (xhr) {
-           var token = window.sessionStorage.getItem("sessionToken");
-           xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
-       }
-        })
-        .done(function() {
-            console.log(response);
-            console.log("success");
-        })
-        .fail(function() {
-            console.log("error");
-        })
-        .always(function() {
-            console.log("complete");
-        });
-
-
-
-
-
-
+        console.log("er is iets ingevuld.");
     }
 });
 });
 $("#registerBod").click(function(event) {
-    if (parseInt($("#bodBedrag").val())>sessionStorage.getItem("hoogste")){
+    if (parseInt($("#bodBedrag").val())>$("#biedingencollection").data('hoogste')){
         Materialize.toast('Bod gedaan', 4000);
         var data = $("#bodRegistratie").serialize();
         var bod = parseInt($("#bodBedrag").val());
