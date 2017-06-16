@@ -143,6 +143,33 @@ for (Voorwerp v: vdao.selectAll()){
 	return array.toString();
 		
 	}
+@GET
+@RolesAllowed("verkoper")
+	@Path("/gebruiker/gesloten/{id}")
+	@Produces("application/json")
+	public String findByUserGesloten(@PathParam("id")int id){
+	
+		for( Voorwerp v : vdao.findByUser(id)){
+		job.add("voorwerpnummer", v.getVoorwerpNummer());
+		job.add("titel",v.getTitel());
+		job.add("beschrijving", v.getBeschrijving());
+		job.add("startprijs", v.getStartPrijs() );
+		job.add("betalingswijze", v.getBetalingswijze());
+		job.add("begintijd", v.getBeginTijd().getTime());
+		
+		job.add("verzendkosten", v.getVerzendkosten());
+		job.add("verzendinstructie", v.getVerzendinstructie());
+		job.add("verkoper", v.getVerkoper());
+		job.add("koper", v.getKoper());
+		job.add("veilingGesloten", v.isVeilingGesloten() );
+		job.add("verkoopprijs", v.getVerkoopprijs());
+		job.add("rubriek", v.getRubriek());
+		jab.add(job);
+		}
+	JsonArray array = jab.build();
+	return array.toString();
+		
+	}
 	@POST
 	@RolesAllowed("verkoper")
 	@Path("/new")
@@ -161,7 +188,7 @@ for (Voorwerp v: vdao.selectAll()){
 		Voorwerp v = new Voorwerp(titel,beschrijving,startprijs,betalingswijze,now,verzendkosten,verzendinstructie,verkoper,false,rubriek);
 		
 		vdao.insert(v);
-		return v.toString();
+		return null;
 	}
 	
 	@PUT
@@ -173,10 +200,14 @@ for (Voorwerp v: vdao.selectAll()){
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		Voorwerp v1 = vdao.findByCode(id);
 		Bod b= bdao.findhighestBodByVoorwerp(v1.getVoorwerpNummer());
+		v1.setVerkoopprijs(b.getBodBedrag());
 		int  koper = b.getGebruiker();
+		v1.setKoper(koper);
+		v1.setVeilingGesloten(true);
+		v1.setEindTijd(now);
 		double verkoopprijs = b.getBodBedrag();
-		Voorwerp v = new Voorwerp(id,now,koper,true,verkoopprijs);
-			vdao.update(v);
+		
+			vdao.update(v1);
 		return null;
 	}
 	@DELETE

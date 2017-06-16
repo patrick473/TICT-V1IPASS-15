@@ -45,7 +45,7 @@ $("#itemCollection").delegate('a', 'click', function() {
 
 function init() {
     $.ajax({
-        url: " restservices/voorwerp/gebruiker/"+sessionStorage.getItem("gebruikerID"),
+        url: "http://localhost:4711/onebid/restservices/voorwerp/gebruiker/gesloten/"+sessionStorage.getItem("gebruikerID"),
         type: 'GET',
         beforeSend: function (xhr) {
        var token = window.sessionStorage.getItem("sessionToken");
@@ -82,9 +82,8 @@ function init() {
 
 function loadModal(voorwerpnummer) {
     $("#biedingencollection").empty();
-    sessionStorage.setItem("huidigItem", voorwerpnummer);
     $.ajax({
-       url: "restservices/voorwerp/" + voorwerpnummer,
+       url: "http://localhost:4711/onebid/restservices/voorwerp/" + voorwerpnummer,
        type: 'GET',
        beforeSend: function (xhr) {
       var token = window.sessionStorage.getItem("sessionToken");
@@ -109,7 +108,7 @@ function loadModal(voorwerpnummer) {
     });
 
     $.ajax({
-       url: "restservices/bod/voorwerp/" + voorwerpnummer,
+       url: "http://localhost:4711/onebid/restservices/bod/voorwerp/" + voorwerpnummer,
        type: 'GET',
        beforeSend: function (xhr) {
        var token = window.sessionStorage.getItem("sessionToken");
@@ -119,7 +118,6 @@ function loadModal(voorwerpnummer) {
     .done(function(data) {
       var count = Object.keys(data).length;
       if (count > 0) {
-        $("#eindigVeiling").removeClass('hide');
           console.log("testt");
           $(data).each(function(index) {
 
@@ -129,19 +127,18 @@ function loadModal(voorwerpnummer) {
       } else {
           console.log("test");
           $("#biedingencollection").append('<li class="collection-item">er is nog niet op geboden </li>');
-          $("#eindigVeiling").addClass('hide');
       }
     })
     .fail(function() {
        console.log("error");
     })
     .always(function() {
-
+      sessionStorage.setItem("huidigItem", voorwerpnummer);
     });
 
 
     $.ajax({
-       url: "restservices/bod/voorwerp/hoogste/" + voorwerpnummer,
+       url: "http://localhost:4711/onebid/restservices/bod/voorwerp/hoogste/" + voorwerpnummer,
        type: 'GET',
        beforeSend: function (xhr) {
        var token = window.sessionStorage.getItem("sessionToken");
@@ -169,7 +166,7 @@ function loadModal(voorwerpnummer) {
 
 $("#verwijder").click(function(event) {
     $.ajax({
-        url: 'restservices/voorwerp/delete/'+sessionStorage.getItem("voorwerpnummer"),
+        url: 'http://localhost:4711/onebid/restservices/voorwerp/delete/'+sessionStorage.getItem("voorwerpnummer"),
         type: 'delete',
         beforeSend: function (xhr) {
         var token = window.sessionStorage.getItem("sessionToken");
@@ -190,8 +187,8 @@ $("#verwijder").click(function(event) {
 });
 $("#eindigVeiling").click(function(event) {
     $.ajax({
-        url: 'restservices/voorwerp/end/'+sessionStorage.getItem("voorwerpnummer"),
-        type: 'PUT',
+        url: 'http://localhost:4711/onebid/restservices/voorwerp/end/'+sessionStorage.getItem("voorwerpnummer"),
+        type: 'put',
         beforeSend: function (xhr) {
         var token = window.sessionStorage.getItem("sessionToken");
         xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);

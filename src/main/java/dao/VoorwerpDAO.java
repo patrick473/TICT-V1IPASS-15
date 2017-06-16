@@ -57,14 +57,17 @@ public class VoorwerpDAO extends BaseDAO{
 		return selectVoorwerpen("SELECT * FROM voorwerp WHERE rubriek = " + rubriek + " and veilinggesloten = false");
 	}
 	public ArrayList<Voorwerp> findByUser(int verkoper) {
-		return selectVoorwerpen("SELECT * FROM voorwerp WHERE verkoper= " + verkoper + " ");
+		return selectVoorwerpen("SELECT * FROM voorwerp WHERE verkoper= " + verkoper + " and veilinggesloten = false");
+	}
+	public ArrayList<Voorwerp> findByUserGesloten(int verkoper) {
+		return selectVoorwerpen("SELECT * FROM voorwerp WHERE verkoper= " + verkoper + " and veilinggesloten = true");
 	}
 
 	public Voorwerp update(Voorwerp b) {
 		try (Connection con = super.connect()) {
 			PreparedStatement stmt = con.prepareStatement(
 					"update voorwerp "+
-	"set eindtijd=? ,koper="+b.getKoper()+",veilingGesloten= true,"
+	"set eindtijd=? ,koper="+b.getKoper()+", veilinggesloten= true ,"
 	+ "verkoopprijs="+b.getVerkoopprijs()+"where voorwerpnummer="+b.getVoorwerpNummer()+"");
 			
 			stmt.setTimestamp(1, b.getEindTijd());
