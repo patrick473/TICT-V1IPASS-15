@@ -106,14 +106,30 @@ function checkWidth(init){
     }
 }
 function loadRubriekenUpper(){
-    $.get("restservices/rubriek/bovenste", (data) => {
+    $.ajax({
+        url: "restservices/rubriek/bovenste",
+        type: 'GET',
+        beforeSend: function(xhr) {
+            var token = window.sessionStorage.getItem("sessionToken");
+            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
 
-            $(data).each(function(index) {
-                $("#initRubriekenCollection").append('<a href="#!"  class="collection-item" data-rubrieknummer="' + this.rubrieknummer + '" id="rubriek' + this.rubrieknummer + '">' + this.rubrieknaam + '</a>');
+        }
+
+    })
+    .done(function(data) {
+        $(data).each(function(index) {
+            $("#initRubriekenCollection").append('<a href="#!"  class="collection-item" data-rubrieknummer="' + this.rubrieknummer + '" id="rubriek' + this.rubrieknummer + '">' + this.rubrieknaam + '</a>');
 
 
-            });
         });
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+        console.log("complete");
+    });
+
 }
 
 function showUpperhideUnder(){
