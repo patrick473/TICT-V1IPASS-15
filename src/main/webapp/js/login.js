@@ -73,6 +73,7 @@ $("#loginForm").validate({
                   console.log(this);
                   sessionStorage.setItem("gebruikerID",this.gebruikerID);
                   sessionStorage.setItem("kanverkopen", this.kanverkopen);
+                  sessionStorage.setItem("gebruikersnaam",this.gebruikersnaam);
               });
 
 
