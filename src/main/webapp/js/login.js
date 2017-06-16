@@ -88,7 +88,7 @@ $("#loginForm").validate({
          .always(function() {
              console.log("complete");
          });
-  }, 1000);
+  }, 2000);
 
 
 
