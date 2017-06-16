@@ -1,41 +1,29 @@
 package dao;
 
-import java.net.URI;
-import java.sql.Connection;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
-public class BaseDAO {
- private DataSource connectionPool;
- public BaseDAO() {
- try {
- final String DATABASE_URL_PROP = System.getenv("DATABASE_URL");
- if (DATABASE_URL_PROP != null) {
- URI dbUri = new URI(DATABASE_URL_PROP);
- String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
- BasicDataSource pool = new BasicDataSource();
- if (dbUri.getUserInfo() != null) {
- pool.setUsername(dbUri.getUserInfo().split(":")[0]);
- pool.setPassword(dbUri.getUserInfo().split(":")[1]);
- }
- pool.setDriverClassName("org.postgresql.Driver");
- pool.setUrl(dbUrl);
- pool.setInitialSize(1);
+import java.sql.*;
 
- connectionPool = pool;
- } else {
- InitialContext ic = new InitialContext();
- connectionPool = (DataSource) ic.lookup("java:comp/env/jdbc/PostgresDS");
- }
- } catch (Exception e) {
- throw new RuntimeException(e);
- }
- }
- protected final Connection connect() {
- try {
- return connectionPool.getConnection();
- } catch (Exception ex) {
- throw new RuntimeException(ex);
- }
- }
+public class BaseDAO {
+	//Zorg ter voorbereiding dat je ojdbc.jar download en toevoegt aan je project.
+	
+	//Aanmaken van de variabelen die je connectie specificeren. In dit geval een gebruiker "harry" met password "harry"
+	private static final String DB_DRIV = "org.postgresql.Driver";
+	private static final String DB_URL = "jdbc:postgresql://ikvelykswrxmte:41f82a54de5b6c192ca94000a3e2adbd83d9832bf5cb37df07cc4e289f93b113@ec2-79-125-13-42.eu-west-1.compute.amazonaws.com:5432/d96gqtk7c8o7qr";
+	private static final String DB_USER = "ikvelykswrxmte";
+	private static final String DB_PASS = "41f82a54de5b6c192ca94000a3e2adbd83d9832bf5cb37df07cc4e289f93b113";
+	private static Connection conn;
+	
+	// De methode die met JDBC aan de slag gaat moet een SQLException opvangen of gooien
+	public Connection connect() throws SQLException{
+		//Besluit welke driver je gaat gebruiken voor je verbinding		
+		try {
+			Class.forName(DB_DRIV).newInstance();
+		} 
+		catch (InstantiationException | IllegalAccessException | ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		System.out.println("connection established");
+		// Leg de connectie met de database
+		conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+		return conn;
+	}
 }
