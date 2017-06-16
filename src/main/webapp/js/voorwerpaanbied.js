@@ -147,7 +147,7 @@ $(document).ready(function(){
                    console.log(data);
                    event.preventDefault();
                    $.ajax({
-                       url: "http://localhost:4711/onebid/restservices/voorwerp/new/",
+                       url: "restservices/voorwerp/new/",
                        type: 'POST',
                        data:data,
                        beforeSend: function (xhr) {

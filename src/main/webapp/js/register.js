@@ -148,7 +148,7 @@ $("#registerForm").validate({
        }
        console.log(kanVerkopen);
 
-      $.post("http://localhost:4711/onebid/restservices/gebruiker/new/"+kanVerkopen, data, function(response) {
+      $.post("restservices/gebruiker/new/"+kanVerkopen, data, function(response) {
 
        }).fail(function(jqXHR, textStatus, errorThrown) {
          console.log(textStatus);

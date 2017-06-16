@@ -47,7 +47,7 @@ $("#itemCollection").delegate('a', 'click', function() {
 
 function init() {
     $.ajax({
-            url: 'http://localhost:4711/onebid/restservices/voorwerp',
+            url: 'restservices/voorwerp',
             type: 'GET',
             beforeSend: function(xhr) {
                 var token = window.sessionStorage.getItem("sessionToken");
@@ -83,7 +83,7 @@ function loadModal(voorwerpnummer) {
     $("#biedingencollection").empty();
     $("#bodBedrag").val('');
     $.ajax({
-            url: "http://localhost:4711/onebid/restservices/voorwerp/" + voorwerpnummer,
+            url: "restservices/voorwerp/" + voorwerpnummer,
             type: 'GET',
             beforeSend: function(xhr) {
                 var token = window.sessionStorage.getItem("sessionToken");
@@ -109,7 +109,7 @@ function loadModal(voorwerpnummer) {
             console.log("complete");
         });
         $.ajax({
-                url: "http://localhost:4711/onebid/restservices/bod/voorwerp/" + voorwerpnummer,
+                url: "restservices/bod/voorwerp/" + voorwerpnummer,
                 type: 'GET',
                 beforeSend: function(xhr) {
                     var token = window.sessionStorage.getItem("sessionToken");
@@ -140,7 +140,7 @@ function loadModal(voorwerpnummer) {
             });
             $("#biedingencollection").data('hoogste',0);
         $.ajax({
-                url: "http://localhost:4711/onebid/restservices/bod/voorwerp/hoogste/" + voorwerpnummer,
+                url: "restservices/bod/voorwerp/hoogste/" + voorwerpnummer,
                 type: 'GET',
                 beforeSend: function(xhr) {
                     var token = window.sessionStorage.getItem("sessionToken");
@@ -228,7 +228,7 @@ $("#registerBod").click(function(event) {
         event.preventDefault();
         console.log(sessionStorage);
         $.ajax({
-            url: 'http://localhost:4711/onebid/restservices/bod/' + sessionStorage.getItem("huidigItem") + '/' + sessionStorage.getItem("gebruikerID") + '/' + bod,
+            url: 'restservices/bod/' + sessionStorage.getItem("huidigItem") + '/' + sessionStorage.getItem("gebruikerID") + '/' + bod,
             type: 'POST',
             data: data,
             beforeSend: function (xhr) {

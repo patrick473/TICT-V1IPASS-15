@@ -45,7 +45,7 @@ $("#itemCollection").delegate('a', 'click', function() {
 
 function init() {
     $.ajax({
-        url: "http://localhost:4711/onebid/restservices/voorwerp/gebruiker/gesloten/"+sessionStorage.getItem("gebruikerID"),
+        url: "restservices/voorwerp/gebruiker/gesloten/"+sessionStorage.getItem("gebruikerID"),
         type: 'GET',
         beforeSend: function (xhr) {
        var token = window.sessionStorage.getItem("sessionToken");
@@ -83,7 +83,7 @@ function init() {
 function loadModal(voorwerpnummer) {
     $("#biedingencollection").empty();
     $.ajax({
-       url: "http://localhost:4711/onebid/restservices/voorwerp/" + voorwerpnummer,
+       url: "restservices/voorwerp/" + voorwerpnummer,
        type: 'GET',
        beforeSend: function (xhr) {
       var token = window.sessionStorage.getItem("sessionToken");
@@ -108,7 +108,7 @@ function loadModal(voorwerpnummer) {
     });
 
     $.ajax({
-       url: "http://localhost:4711/onebid/restservices/bod/voorwerp/" + voorwerpnummer,
+       url: "restservices/bod/voorwerp/" + voorwerpnummer,
        type: 'GET',
        beforeSend: function (xhr) {
        var token = window.sessionStorage.getItem("sessionToken");
@@ -138,7 +138,7 @@ function loadModal(voorwerpnummer) {
 
 
     $.ajax({
-       url: "http://localhost:4711/onebid/restservices/bod/voorwerp/hoogste/" + voorwerpnummer,
+       url: "restservices/bod/voorwerp/hoogste/" + voorwerpnummer,
        type: 'GET',
        beforeSend: function (xhr) {
        var token = window.sessionStorage.getItem("sessionToken");
@@ -164,48 +164,6 @@ function loadModal(voorwerpnummer) {
     });
 }
 
-$("#verwijder").click(function(event) {
-    $.ajax({
-        url: 'http://localhost:4711/onebid/restservices/voorwerp/delete/'+sessionStorage.getItem("voorwerpnummer"),
-        type: 'delete',
-        beforeSend: function (xhr) {
-        var token = window.sessionStorage.getItem("sessionToken");
-        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
-        }
-    })
-    .done(function() {
-        Materialize.toast('Voorwerp verwijderd.', 4000);
-        setTimeout(function(){window.location.reload(); }, 1000);
-    })
-    .fail(function() {
-        console.log("error");
-    })
-    .always(function() {
-        console.log("complete");
-    });
-
-});
-$("#eindigVeiling").click(function(event) {
-    $.ajax({
-        url: 'http://localhost:4711/onebid/restservices/voorwerp/end/'+sessionStorage.getItem("voorwerpnummer"),
-        type: 'put',
-        beforeSend: function (xhr) {
-        var token = window.sessionStorage.getItem("sessionToken");
-        xhr.setRequestHeader( 'Authorization', 'Bearer ' + token);
-        }
-    })
-    .done(function() {
-        Materialize.toast('Veiling gestopt.', 4000);
-        setTimeout(function(){window.location.reload(); }, 1000);
-    })
-    .fail(function() {
-        console.log("error");
-    })
-    .always(function() {
-        console.log("complete");
-    });
-
-});
 //HIERBOVEN AllE SElECT DINGEN
 
 //HIERONDER DE REST

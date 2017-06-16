@@ -49,7 +49,7 @@ $("#loginForm").validate({
          var data = $("#loginForm").serialize();
 
          event.preventDefault();
-         $.post("http://localhost:4711/onebid/restservices/authentication", data, function(response) {
+         $.post("restservices/authentication", data, function(response) {
 
            sessionStorage.setItem("sessionToken", response);
            console.log(sessionStorage.getItem("sessionToken"));
@@ -59,7 +59,7 @@ $("#loginForm").validate({
          });
          gebruikersnaam = $("#gebruikersnaam").val();
          setTimeout(function(){$.ajax({
-             url: "http://localhost:4711/onebid/restservices/gebruiker/username/"+gebruikersnaam,
+             url: "restservices/gebruiker/username/"+gebruikersnaam,
              type: 'GET',
              beforeSend: function (xhr) {
             var token = window.sessionStorage.getItem("sessionToken");
