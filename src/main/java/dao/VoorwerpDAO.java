@@ -1,6 +1,7 @@
 package dao;
 
-	import java.sql.Connection;
+	import java.net.URISyntaxException;
+import java.sql.Connection;
 	import java.sql.PreparedStatement;
 	import java.sql.ResultSet;
 	import java.sql.SQLException;
@@ -39,6 +40,9 @@ public class VoorwerpDAO extends BaseDAO{
 			}
 		catch(SQLException e){
 			e.printStackTrace();
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 			return voorwerpenlijst;
 		}
@@ -77,6 +81,9 @@ public class VoorwerpDAO extends BaseDAO{
 			
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return findByCode(b.getVoorwerpNummer());
@@ -102,6 +109,9 @@ public class VoorwerpDAO extends BaseDAO{
 			
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return b;
@@ -121,6 +131,10 @@ public class VoorwerpDAO extends BaseDAO{
 				sqle.printStackTrace();
 				return false;
 				
+			} catch (URISyntaxException e) {
+			
+				e.printStackTrace();
+				return false;
 			}
 	}
 	

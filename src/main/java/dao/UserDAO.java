@@ -1,5 +1,6 @@
 package dao;
 
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +31,10 @@ public class UserDAO extends BaseDAO {
 	 }
 	 } catch (SQLException sqle) {
 	 sqle.printStackTrace();
-	 }
+	 } catch (URISyntaxException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 
 	 return role;
 	 }

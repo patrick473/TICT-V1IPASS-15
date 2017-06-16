@@ -1,5 +1,6 @@
 package dao;
 
+import java.net.URISyntaxException;
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
@@ -30,6 +31,9 @@ public class BodDAO extends BaseDAO{
 	}
 	catch(SQLException e){
 		e.printStackTrace();
+	} catch (URISyntaxException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
 	}
 		return bodlijst;
 }
@@ -66,6 +70,9 @@ public Bod insert(Bod b) {
 		
 	} catch (SQLException sqle) {
 		sqle.printStackTrace();
+	} catch (URISyntaxException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
 	
 	return b;
