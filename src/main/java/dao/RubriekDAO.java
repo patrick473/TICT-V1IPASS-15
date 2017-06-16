@@ -11,7 +11,7 @@ import model.Rubriek;
 public class RubriekDAO extends BaseDAO{
 		private ArrayList<Rubriek> selectRubrieken(String query){
 			ArrayList<Rubriek> rubrieklijst = new ArrayList<Rubriek>();
-			try(Connection con = super.connect()){
+			try(Connection con = super.getConnection()){
 				Statement stmt = con.createStatement();
 		ResultSet dbResultSet = stmt.executeQuery(query);
 		

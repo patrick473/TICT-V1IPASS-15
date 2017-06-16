@@ -35,7 +35,7 @@ public class BaseDAO {
 		}
 	}
 	
-	protected final Connection connect() {
+	protected final Connection getConnection() {
 		try {
 			return connectionPool.getConnection();
 		} catch (Exception ex) {

@@ -13,7 +13,7 @@ import model.Gebruiker;
 public class GebruikerDAO extends BaseDAO{
 	private ArrayList<Gebruiker> selectGebruikers(String query){
 		ArrayList<Gebruiker> gebruikers = new ArrayList<Gebruiker>();
-		try(Connection con = super.connect()){
+		try(Connection con = super.getConnection()){
 			Statement stmt = con.createStatement();
 	ResultSet dbrs = stmt.executeQuery(query);
 	
@@ -58,7 +58,7 @@ public Gebruiker findByUsername(String id) {
 	return selectGebruikers("SELECT * FROM gebruiker WHERE gebruikersnaam = '" + id + "'").get(0);
 }
 public Gebruiker update(Gebruiker b) {
-	try (Connection con = super.connect()) {
+	try (Connection con = super.getConnection()) {
 		PreparedStatement stmt = con.prepareStatement(
 				"update gebruiker "+
 "set gebruikersnaam='"+b.getGebruikersNaam()+"',achternaam='"+b.getAchterNaam()+"',"
@@ -78,7 +78,7 @@ public Gebruiker update(Gebruiker b) {
 	return findByCode(b.getGebruikersID());
 }
 public Gebruiker updatePassword (Gebruiker b){
-	try (Connection con = super.connect()) {
+	try (Connection con = super.getConnection()) {
 		PreparedStatement stmt = con.prepareStatement(
 				"update gebruiker "+
 "set set wachtwoord ='"+b.getWachtWoord()+"' where gebruikersid="+b.getGebruikersID()+"");
@@ -100,7 +100,7 @@ public Gebruiker updatePassword (Gebruiker b){
 
 
 public Gebruiker insert(Gebruiker b) {
-	try (Connection con = super.connect()) {
+	try (Connection con = super.getConnection()) {
 		PreparedStatement stmt = con.prepareStatement(
 				"insert into gebruiker"
 				+ " values(nextval('gebruiker_sequence'),'"+b.getGebruikersNaam()+"','"+b.getVoorNaam()+"'"

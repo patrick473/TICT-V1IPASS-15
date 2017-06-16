@@ -10,7 +10,7 @@ public class UserDAO extends BaseDAO {
 	 String role = null;
 	 String query = "SELECT kanverkopen FROM gebruiker WHERE gebruikersnaam = ? AND wachtwoord = ?";
 
-	 try (Connection con = super.connect()) {
+	 try (Connection con = super.getConnection()) {
 
 	 PreparedStatement pstmt = con.prepareStatement(query);
 	 pstmt.setString(1, username);

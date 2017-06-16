@@ -13,7 +13,7 @@ import model.Voorwerp;
 public class VoorwerpDAO extends BaseDAO{
 		private ArrayList<Voorwerp> selectVoorwerpen(String query){
 			ArrayList<Voorwerp> voorwerpenlijst = new ArrayList<Voorwerp>();
-			try(Connection con = super.connect()){
+			try(Connection con = super.getConnection()){
 				Statement stmt = con.createStatement();
 		ResultSet dbrs = stmt.executeQuery(query);
 		
@@ -64,7 +64,7 @@ public class VoorwerpDAO extends BaseDAO{
 	}
 
 	public Voorwerp update(Voorwerp b) {
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(
 					"update voorwerp "+
 	"set eindtijd=? ,koper="+b.getKoper()+", veilinggesloten= true ,"
@@ -84,7 +84,7 @@ public class VoorwerpDAO extends BaseDAO{
 
 
 	public Voorwerp insert(Voorwerp b) {
-		try (Connection con = super.connect()) {
+		try (Connection con = super.getConnection()) {
 			
 		
 				PreparedStatement stmt = con.prepareStatement(
@@ -109,7 +109,7 @@ public class VoorwerpDAO extends BaseDAO{
 
 	public boolean delete(int id){
 		
-		try(Connection con = super.connect()){
+		try(Connection con = super.getConnection()){
 			Statement stmt = con.createStatement();
 			
 			String query = "delete from bod where voorwerp= "+id+"";

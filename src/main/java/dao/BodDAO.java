@@ -14,7 +14,7 @@ import model.Bod;
 public class BodDAO extends BaseDAO{
 	private ArrayList<Bod> selectBoden(String query){
 		ArrayList<Bod> bodlijst = new ArrayList<Bod>();
-		try(Connection con = super.connect()){
+		try(Connection con = super.getConnection()){
 			Statement stmt = con.createStatement();
 	ResultSet dbResultSet = stmt.executeQuery(query);
 	
@@ -53,7 +53,7 @@ public Bod findhighestBodByVoorwerp(int voorwerp) {
 	else{ return null;}
 }
 public Bod insert(Bod b) {
-	try (Connection con = super.connect()) {
+	try (Connection con = super.getConnection()) {
 		PreparedStatement stmt = con.prepareStatement(
 				"insert into bod"
 				+ " values(nextval('bod_sequence'),"+b.getVoorwerpID()+""

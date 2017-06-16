@@ -20,7 +20,7 @@ public class TestRunner {
 		Bod b = new Bod(14,90.00,2,now);
 		System.out.println(bbdao.findByCode(1));
 		System.out.println(bbdao.insert(b));
-		bdao.connect();
+		bdao.getConnection();
 		System.out.println(udao.findRoleForUsernameAndPassword("patrick473", "wachtwoord"));
 	}
 
