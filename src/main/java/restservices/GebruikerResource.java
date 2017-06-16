@@ -108,18 +108,17 @@ for (Gebruiker g: gdao.selectAll()){
 	
 	@Path("/{id}/{kanverkopen}")
 	@Produces("application/json")
-	public String updateGebruiker(@PathParam("id")int id,@FormParam("gebruikersnaam")String gebruikersnaam,
-			@FormParam("voornaam")String voornaam,
-			@FormParam("achternaam")String achternaam,
+	public String updateGebruiker(@PathParam("id")int id,
+		
 			@FormParam("adres")String adres,@FormParam("postcode")String postcode,@FormParam("plaatsnaam")String plaatsnaam,
-			@FormParam("land")String land,@FormParam("geboortedag")Date geboortedag,@FormParam("email")String email,
+			@FormParam("land")String land,@FormParam("email")String email,
 			@FormParam("telefoonnummer")int telefoonnummer,
 			@PathParam("kanverkopen")boolean kanverkopen,@FormParam("banknummer")String banknummer){
 		
-		Gebruiker g = new Gebruiker(id,gebruikersnaam,voornaam,achternaam,adres,postcode,
-				plaatsnaam,land,geboortedag,email,telefoonnummer,kanverkopen,banknummer);
+		Gebruiker g = new Gebruiker(id,adres,postcode,
+				plaatsnaam,land,email,telefoonnummer,kanverkopen,banknummer);
 		gdao.update(g);
-		return g.toString();
+		return null;
 	}
 	@PUT
 	
@@ -129,7 +128,7 @@ for (Gebruiker g: gdao.selectAll()){
 		Gebruiker g = new Gebruiker(id,wachtwoord);
 		gdao.updatePassword(g);
 		
-		return g.toString();
+		return null;
 	}
 	@POST
 

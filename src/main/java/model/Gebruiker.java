@@ -26,6 +26,22 @@ public class Gebruiker {
 		this.gebruikersID = gebruikersID;
 		this.wachtWoord = wachtWoord;
 	}
+	
+
+	public Gebruiker(int gebruikersID, String adres, String postCode, String plaatsNaam, String land, String email,
+			int telefoonNummer, Boolean kanVerkopen, String bankNummer) {
+		super();
+		this.gebruikersID = gebruikersID;
+		this.adres = adres;
+		this.postCode = postCode;
+		this.plaatsNaam = plaatsNaam;
+		this.land = land;
+		this.email = email;
+		this.telefoonNummer = telefoonNummer;
+		this.kanVerkopen = kanVerkopen;
+		this.bankNummer = bankNummer;
+	}
+
 
 	public Gebruiker(int gebruikersID, String gebruikersNaam, String voorNaam,  String achterNaam,
 			String adres, String postCode, String plaatsNaam, String land, Date geboorteDag, String email,

@@ -65,12 +65,12 @@ public Gebruiker update(Gebruiker b) {
 	try (Connection con = super.getConnection()) {
 		PreparedStatement stmt = con.prepareStatement(
 				"update gebruiker "+
-"set gebruikersnaam='"+b.getGebruikersNaam()+"',achternaam='"+b.getAchterNaam()+"',"
-+ "adres='"+b.getAdres()+"',postcode='"+b.getPostCode()+"',plaatsnaam='"+b.getPlaatsNaam()+"',land='"+b.getLand()+"',geboortedag=?,"
+"set "
++ "adres='"+b.getAdres()+"',postcode='"+b.getPostCode()+"',plaatsnaam='"+b.getPlaatsNaam()+"',land='"+b.getLand()+"',"
 + "email='"+b.getEmail()+"',telefoonnummer="+b.getTelefoonNummer()+",kanVerkopen=?,banknummer='"+b.getBankNummer()+"' where gebruikersid="+b.getGebruikersID()+"");
 		
-		stmt.setDate(1, b.getGeboorteDag());
-			stmt.setBoolean(2, b.getKanVerkopen());
+		
+			stmt.setBoolean(1, b.getKanVerkopen());
 		
 		stmt.executeUpdate();
 		

@@ -6,7 +6,7 @@
     <title>Onebid | Veilingen</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
-            <link type="text/css" rel="stylesheet" href="css/global.css" />
+        <link type="text/css" rel="stylesheet" href="css/global.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
@@ -18,47 +18,39 @@
 
                 </div>
 
-                <a href="gebruikersgegevens.html"><span class="username"></span></a>
+                <a ><span class="username"></span></a>
 
 
             </div>
+        </li>
+        <li >
+            <a class="waves-effect " href="veilingen.html" >
+                     <i class="material-icons">search</i>
+                     terug naar hoofdmenu</a>
         </li>
         <li class="active">
-            <a class="waves-effect " >
-                     <i class="material-icons">search</i>
-                     Veilingen bekijken</a>
+            <a class="waves-effect" >
+
+                     algemene informatie</a>
+        </li>
+
+        <li class="">
+            <a class="waves effect" href="informatieaanpassen.html">
+
+                     algemene informatie aanpassen</a>
         </li>
         <li class="">
-            <a class="waves-effect" href="rubrieken.html">
-                     <i class="material-icons">view_module</i>
-                     Rubrieken</a>
-        </li>
-        <li class="verkoperItem">
-            <div class="divider">
+            <a class="waves-effect" href="wachtwoordaanpassen.html" >
 
-            </div>
+                    wachtwoord aanpassen</a>
         </li>
-        <li class="verkoperItem">
-            <a class="waves effect" href="voorwerpaanbied.html">
-                     <i class="material-icons">queue</i>
-                     Voorwerp aanbieden</a>
-        </li>
-        <li class="verkoperItem">
-            <a class="waves-effect" href="eigenveilingen.html">
-                     <i class="material-icons">view_list</i>
-                     Eigen veilingen bekijken</a>
-        </li>
-        <li class="verkoperItem">
-            <a class="waves-effect" href="eigenveilingengesloten.html" >
-                     <i class="material-icons">view_list</i>
-                     Eigen gesloten veilingen bekijken</a>
-        </li>
+
         <li>
             <div class="divider">
 
             </div>
         </li>
-        <li>
+        <li >
             <a class="waves-effect" href="index.html">
                      <i class="material-icons">power_settings_new</i>
                      Uitloggen</a>
@@ -125,21 +117,12 @@
         </ul>
         <div class="row">
     <div >
-        <form id="bodRegistratie">
 
-
-        <div  class="input-field col-s3 ">
-                  <input  id="bodBedrag" name="bodBedrag" type="text" class="validate">
-                  <label for="bodBedrag">bod bedrag</label>
-
-                    <button class="btn waves-effect waves-light " id="registerBod"type="button" name="action">Bod doen
-                    <i class="mdi-content-send right"></i>
+                    <button class="btn waves-effect waves-light red" id="eindigVeiling"type="button" name="action">Beeindigen
                                       </button>
+                                      <button class="btn waves-effect waves-light red " name="verwijder" id="verwijder"type="button" name="action">Verwijderen
+                                                        </button>
                                           </div>
-</form>
-    <div>
-
-    </div>
 </div>
        </div>
         </div>
@@ -157,7 +140,7 @@
       <script type="text/javascript" src="js/additional-methods.min.js"></script>
       <script type="text/javascript" src="js/jquery.formatter.min.js" ></script>
     <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/veilingen.js"></script>
+    <script type="text/javascript" src="js/eigenveilingen.js"></script>
 </body>
 
 </html>
