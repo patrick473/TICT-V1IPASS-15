@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $(".sideNavDropOut").sideNav();
 $(".username").html(sessionStorage.getItem("gebruikersnaam"));
-var v = (localStorage.getItem('kanverkopen')=='true');
+var v = (sessionStorage.getItem('kanverkopen')=='true');
 if(v){
     console.log("gebruiker kan verkopen");
 }
