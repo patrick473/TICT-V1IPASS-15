@@ -126,7 +126,7 @@ function loadModal(voorwerpnummer) {
           });
       } else {
           console.log("test");
-          $("#biedingencollection").append('<li class="collection-item">er is nog niet op geboden </li>');
+          $("#biedingencollection").append('<li class="collection-item">er is niet op geboden </li>');
       }
     })
     .fail(function() {

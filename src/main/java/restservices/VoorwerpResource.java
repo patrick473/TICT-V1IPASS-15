@@ -149,7 +149,7 @@ for (Voorwerp v: vdao.selectAll()){
 	@Produces("application/json")
 	public String findByUserGesloten(@PathParam("id")int id){
 	
-		for( Voorwerp v : vdao.findByUser(id)){
+		for( Voorwerp v : vdao.findByUserGesloten(id)){
 		job.add("voorwerpnummer", v.getVoorwerpNummer());
 		job.add("titel",v.getTitel());
 		job.add("beschrijving", v.getBeschrijving());

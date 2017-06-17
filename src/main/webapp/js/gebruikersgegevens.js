@@ -1,6 +1,6 @@
 $(document).ready(function() {
     checkWidth(true);
-
+    loadGegevens();
     $(window).resize(function() {
         checkWidth(false);
     });
@@ -35,8 +35,15 @@ function loadGegevens(){
         })
         .done(function(data) {
             $(data).each(function(index) {
-
-             console.log("test");
+                $("#gebruikersnaam").text(this.gebruikersnaam);
+                $("#voornaam").text(this.voornaam);
+                $("#achternaam").text(this.achternaam);
+                $("#adres").text(this.adres);
+                $("#poscode").text(this.postcode);
+                $("#plaatsnaam").text(this.plaatsnaam);
+                $("#land").text(this.land);
+                $("#email").text(this.email);
+                console.log("test");
             });
 
 
