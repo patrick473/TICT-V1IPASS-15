@@ -25,7 +25,7 @@ public class GebruikerResource {
 	JsonObjectBuilder job = Json.createObjectBuilder();
 	 SimpleDateFormat sdf = new SimpleDateFormat("DD-MM-YY");
 	@GET
-	
+	//voor testen is dit opengelaten zie dit als @RolesAllowed({"verkoper","gebruiker"})
 	@Produces("application/json")
 	public String selectAllGebruikers(){
 for (Gebruiker g: gdao.selectAll()){
@@ -49,7 +49,7 @@ for (Gebruiker g: gdao.selectAll()){
 	}
 	
 	@GET
-	
+	@RolesAllowed({"verkoper","gebruiker"})
 	@Path("/{id}")
 	@Produces("application/json")
 	public String selectGebruiker(@PathParam("id")int id){
