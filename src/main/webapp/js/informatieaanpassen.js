@@ -35,15 +35,11 @@ function loadGegevens(){
         })
         .done(function(data) {
             $(data).each(function(index) {
-                $("#gebruikersnaam").text(this.gebruikersnaam);
-                $("#voornaam").text(this.voornaam);
-                $("#achternaam").text(this.achternaam);
-                $("#adres").text(this.adres);
-                $("#postcode").text(this.postcode);
-                $("#plaatsnaam").text(this.plaatsnaam);
-                $("#land").text(this.land);
-                $("#geboortedag").text(this.geboortedag);
-                $("#email").text(this.email);
+                $("#adres").val(this.adres);
+                $("#postcode").val(this.postcode);
+                $("#plaatsnaam").val(this.plaatsnaam);
+                $("#land").val(this.land);
+                $("#email").val(this.email);
                 console.log("test");
             });
 
