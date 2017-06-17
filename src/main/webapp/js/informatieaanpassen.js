@@ -40,7 +40,8 @@ function loadGegevens(){
                 $("#plaatsnaam").val(this.plaatsnaam);
                 $("#land").val(this.land);
                 $("#email").val(this.email);
-                console.log("test");
+            
+                Materialize.updateTextFields();
             });
 
 
