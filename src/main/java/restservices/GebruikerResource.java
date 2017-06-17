@@ -23,7 +23,7 @@ public class GebruikerResource {
 	GebruikerDAO gdao = new GebruikerDAO();
 	JsonArrayBuilder jab = Json.createArrayBuilder();
 	JsonObjectBuilder job = Json.createObjectBuilder();
-	 SimpleDateFormat sdf = new SimpleDateFormat("DD-MM-YY");
+	 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YY");
 	@GET
 	//voor testen is dit opengelaten zie dit als @RolesAllowed({"verkoper","gebruiker"})
 	@Produces("application/json")
