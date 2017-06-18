@@ -145,6 +145,6 @@ for (Gebruiker g: gdao.selectAll()){
 				plaatsnaam,land,geboortedag,email,telefoonnummer,wachtwoord,kanverkopen,banknummer);
 		gdao.insert(g);
 		
-	return g.toString();
+	return null;
 	}
 }

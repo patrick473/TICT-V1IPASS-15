@@ -45,7 +45,7 @@ $("#registerForm").validate({
                required:true,
                minlength:10,
                maxlength:10,
-               date: true
+               dateISO:true
            },
            email:{
                required:true,
@@ -107,7 +107,7 @@ $("#registerForm").validate({
            geboortedag:{
                required: "Voer je geboortedag in.",
                minlength: "Een datum bevat minimaal een jaar,datum,dag",
-               date: "voer een valide datum in."
+               dateISO: "voer een valide datum in."
            },
            email:{
                required: "Voer je email in.",
