@@ -122,7 +122,7 @@ for (Gebruiker g: gdao.selectAll()){
 	}
 	@PUT
 	
-	@Path("/{id}")
+	@Path("/password/{id}")
 	@Produces("application/json")
 	public String updateGebruikerPassword(@PathParam("id")int id,@FormParam("wachtwoord")String wachtwoord){
 		Gebruiker g = new Gebruiker(id,wachtwoord);

@@ -76,31 +76,76 @@
             <div class="row">
 
                 <div class="col s10">
+                    <form id="updateForm" class="col s10 offset-s1 right-alert">
+                      <div class='row'>
+
+                            <h4 class="teal-text">One-Bid</h4>
+
+                      </div>
+                    <!-- FORM -->
 
 
-                    <h4>Pas je gegevens aan</h4>
-                </div>
-            </div>
+                      <div class='row'>
+                        <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je het adres in waar je momenteel woont, Deze wordt alleen gedeeld met de koper van uw producten. <br /> Je adres mag maximaal 60 tekens bevatten.">
+                            <i class=" material-icons prefix">home</i>
+                          <input class='validate' type='text' name='adres' id='adres' />
+                          <label for='adres'>adres (verplicht)</label>
+                        </div>
+                      </div>
+                      <div class='row'>
+                        <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je je postcode in, Deze wordt alleen gedeeld met de koper van uw producten.<br /> Uw postcode bestaat uit 4 letters en 2 cijfers.">
+                          <input class='validate' type='text' name='postcode' id='postcode' />
+                          <label for='postcode'>postcode (verplicht)</label>
+                        </div>
+                      </div>
+                      <div class='row'>
+                        <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je de plaatsnaam in van de plaats waar je woont. Uw plaatsnaam mag 60 tekens bevatten <br /> Deze wordt gedeeld met andere gebruikers om een idee te geven waar zij het product kunnen ophalen.">
+                          <input class='validate' type='text' name='plaatsnaam' id='plaatsnaam' />
+                          <label for='plaatsnaam'>plaatsnaam (verplicht)</label>
+                        </div>
+                      </div>
+                      <div class='row'>
+                        <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je het land waar je momenteel woont. Je land mag maximaal 40 tekens bevatten. <br /> Je land wordt gedeeld met andere gebruikers om een idee te geven waar zij het product kunnen ophalen.">
+                          <input class='validate' type='text' name='land' id='land' />
+                          <label for='land'>land (verplicht)</label>
+                        </div>
+                      </div>
 
+                      <div class='row'>
+                          <!-- \TODO: fix deze tekst -->
+                        <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je je email adres in. <br /> Deze wordt momenteel niet gebruikt maar later voor email shit.">
+                          <input class='validate' type='text' name='email' id='email' />
+                          <label for='email'>email (verplicht)</label>
+                        </div>
+                      </div>
+                      <div class='row'>
+                        <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je je telefoonnummer in. Deze wordt niet gedeeld met andere gebruikers.<br /> Een telefoonnummer bestaat uit 10 cijfers.">
+                            <i class=" material-icons prefix">phone</i>
+                          <input class='validate' type='text' name='telefoonnummer' id='telefoonnummer' />
+                          <label for='telefoonnummer'>telefoonnummer (verplicht)</label>
+                        </div>
+                      </div>
 
-            <div class="row">
-                <input  id="adres" type="text" class="validate valid">
-        <label class="" for="adres">First Name</label>
-     </div><div class="row">
-                <input  id="postcode" type="text" class="validate valid">
-        <label class="" for="postcode">First Name</label>
-      </div><div class="row">
-                <input  id="plaatsnaam" type="text" class="validate valid">
-        <label class="" for="plaatsnaam">First Name</label>
-     </div><div class="row">
-                <input  id="land" type="text" class="validate valid">
-        <label class="" for="land">First Name</label>
-    </div>
-    <div class="row">
-        <input  id="email" type="text" class="validate valid">
-<label class="" for="email">First Name</label>
-    </div>
+                      <div class='row'>
+                        <div class='input-field col s12 tooltipped' data-position="bottom" data-delay="50" data-html="true"  data-tooltip="Hier voer je je ibannummer in. Deze wordt gedeeld met de koper, <br /> van je producten zodat zij deze kunnen betalen. voorbeeld:'nl10rabo1111111111'">
+                            <i class=" material-icons prefix">account_balance</i>
+                          <input class='validate' type='text' name='banknummer' id='banknummer' />
+                          <label for='banknummer'>Iban nummer</label>
+                        </div>
+                      </div>
+                      <br />
 
+                      <!-- SUBMIT -->
+                      <center>
+                        <div class="row">
+                            <div class="input-field col s12" >
+                              <button class="btn waves-effect waves-light  submit" id="loginButton"type="submit" name="action">Registreren
+                              <i class="mdi-content-send right"></i>
+                                                </button>
+                                                    </div>
+                        </div>
+                      </center>
+                    </form>
         </div>
     </div>
 
