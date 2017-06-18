@@ -41,6 +41,7 @@ function loadGegevens(){
                 $("#land").val(this.land);
                 $("#email").val(this.email);
                 $("#telefoonnummer").val(this.telefoonnummer);
+                $("#banknummer").val(this.banknummer);
 
                 Materialize.updateTextFields();
             });
@@ -177,7 +178,7 @@ $("#updateForm").validate({
      setTimeout(window.location.replace("index.html"),1000);
    }
     });
-    
+
 $('#postcode').formatter({
       'pattern': '{{9999aa}}',
 });
