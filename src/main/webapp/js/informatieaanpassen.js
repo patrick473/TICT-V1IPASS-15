@@ -40,13 +40,13 @@ function loadGegevens(){
                 $("#plaatsnaam").val(this.plaatsnaam);
                 $("#land").val(this.land);
                 $("#email").val(this.email);
-                $("#telefoonnummer").val(this.telefoonnummer);
+                $("#telefoonnummer").val('0'+this.telefoonnummer);
                 $("#banknummer").val(this.banknummer);
 
                 Materialize.updateTextFields();
             });
 
-
+            Materialize.toast('Bod gedaan', 4000);
         })
         .fail(function() {
             console.log("error");
@@ -160,6 +160,7 @@ $("#updateForm").validate({
            url: 'restservices/gebruiker/'+sessionStorage.getItem("gebruikerID")+'/'+kanVerkopen,
            type: 'PUT',
            data: data,
+
            beforeSend: function(xhr) {
                var token = window.sessionStorage.getItem("sessionToken");
                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
@@ -169,10 +170,10 @@ $("#updateForm").validate({
            console.log("success");
        })
        .fail(function() {
-           console.log("error");
+
        })
        .always(function() {
-           console.log("complete");
+          Materialize.toast('Gegevens aangepast', 4000);
        });
 
      setTimeout(window.location.replace("index.html"),1000);

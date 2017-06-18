@@ -43,7 +43,7 @@ function loadGegevens(){
                 $("#plaatsnaam").text(this.plaatsnaam);
                 $("#land").text(this.land);
                 $("#geboortedag").text(this.geboortedag);
-                $("#telefoonnummer").text(this.telefoonnummer);
+                $("#telefoonnummer").text('0'+this.telefoonnummer);
                 $("#email").text(this.email);
                 console.log("test");
             });
