@@ -105,7 +105,7 @@ for (Gebruiker g: gdao.selectAll()){
 		
 	}
 	@PUT
-	
+	@RolesAllowed({"verkoper","gebruiker"})
 	@Path("/{id}/{kanverkopen}")
 	@Produces("application/json")
 	public String updateGebruiker(@PathParam("id")int id,
@@ -140,11 +140,14 @@ for (Gebruiker g: gdao.selectAll()){
 			@FormParam("land")String land,@FormParam("geboortedag")Date geboortedag,@FormParam("email")String email,
 			@FormParam("telefoonnummer")int telefoonnummer,@FormParam("wachtwoord")String wachtwoord,
 			@PathParam("kanverkopen")boolean kanverkopen,@FormParam("banknummer")String banknummer){
-	
+	try{
 		Gebruiker g = new Gebruiker(gebruikersnaam,voornaam,achternaam,adres,postcode,
 				plaatsnaam,land,geboortedag,email,telefoonnummer,wachtwoord,kanverkopen,banknummer);
 		gdao.insert(g);
-		
+	}
+	catch(Error e){
+		System.out.println(e);
+	}
 	return null;
 	}
 }
