@@ -52,10 +52,12 @@ $("#loginForm").validate({
          $.post("restservices/authentication", data, function(response) {
 
            sessionStorage.setItem("sessionToken", response);
+           Materialize.toast('U wordt ingelogd.', 4000);
            console.log(sessionStorage.getItem("sessionToken"));
          }).fail(function(jqXHR, textStatus, errorThrown) {
            console.log(textStatus);
            console.log(errorThrown);
+           Materialize.toast('combinatie is niet bekend.', 4000);
          });
          gebruikersnaam = $("#gebruikersnaam").val();
          setTimeout(function(){$.ajax({
@@ -79,6 +81,7 @@ $("#loginForm").validate({
 
                   console.log(sessionStorage.getItem("gebruikerID"));
                   console.log(sessionStorage.getItem("kanverkopen"));
+
                   setTimeout(function(){window.location.replace("veilingen.html"); }, 1000);
 
          })

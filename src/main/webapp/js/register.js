@@ -149,12 +149,12 @@ $("#registerForm").validate({
        console.log(kanVerkopen);
 
       $.post("restservices/gebruiker/new/"+kanVerkopen, data, function(response) {
-
+          Materialize.toast("uw account wordt aangemaakt",2000);
        }).fail(function(jqXHR, textStatus, errorThrown) {
          console.log(textStatus);
          console.log(errorThrown);
      });
-     window.location.replace("login.html");
+     setTimeout(window.location.replace("index.html"),1000);
    }
     });
     $('#geboortedag').formatter({
