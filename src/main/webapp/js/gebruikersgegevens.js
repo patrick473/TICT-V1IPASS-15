@@ -46,6 +46,10 @@ function loadGegevens(){
                 $("#geboortedag").text(this.geboortedag);
                 $("#telefoonnummer").text('0'+this.telefoonnummer);
                 $("#email").text(this.email);
+                if (this.banknummer != null) {
+
+                $("#banknummer").text(this.banknummer);
+            }
                 console.log("test");
             });
 

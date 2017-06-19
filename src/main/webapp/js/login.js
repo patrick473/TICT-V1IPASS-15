@@ -59,6 +59,7 @@ $("#loginForm").validate({
            console.log(textStatus);
            console.log(errorThrown);
            Materialize.toast('combinatie is niet bekend.', 4000);
+           $(".prepage").addClass('hide');
          });
          gebruikersnaam = $("#gebruikersnaam").val();
          setTimeout(function(){$.ajax({
