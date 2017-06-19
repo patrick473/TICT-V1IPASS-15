@@ -1,6 +1,7 @@
 $(document).ready(function() {
     checkWidth(true);
     loadGegevens();
+      $(".prepage").addClass('hide');
     $(window).resize(function() {
         checkWidth(false);
     });

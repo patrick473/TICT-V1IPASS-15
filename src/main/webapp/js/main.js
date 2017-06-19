@@ -9,5 +9,5 @@ else {
     console.log("gebruiker kan niet verkopen");
     $(".verkoperItem").addClass('hide');
 }
-
+  $(".prepage").addClass('hide');
 });

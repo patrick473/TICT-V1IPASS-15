@@ -3,7 +3,7 @@ var hoogste= 0;
 $(document).ready(function() {
     checkWidth(true);
     loadRubriekenUpper();
-
+      $(".prepage").addClass('hide');
 
     $(window).resize(function() {
         checkWidth(false);

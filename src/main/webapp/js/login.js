@@ -15,6 +15,7 @@ $("input, textarea").alphanum({
 
 $(document).ready(function() {
 console.log(sessionStorage.getItem("sessionToken"));
+  $(".prepage").addClass('hide');
 });
 $("#loginForm").validate({
        rules: {
@@ -47,7 +48,7 @@ $("#loginForm").validate({
        },
        submitHandler: function(form) {
          var data = $("#loginForm").serialize();
-
+         $(".prepage").removeClass('hide');
          event.preventDefault();
          $.post("restservices/authentication", data, function(response) {
 

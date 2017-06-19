@@ -20,6 +20,7 @@ function checkWidth(init) {
 $(document).ready(function() {
     checkWidth(true);
     init();
+      $(".prepage").addClass('hide');
     $(window).resize(function() {
         checkWidth(false);
     });
