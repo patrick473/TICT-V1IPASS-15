@@ -94,13 +94,8 @@ for (Gebruiker g: gdao.selectAll()){
 		job.add("geboortedag", sdf.format(g.getGeboorteDag()));
 		job.add("email", g.getEmail());
 		job.add("telefoonnummer",g.getTelefoonNummer());
-		job.add("kanverkopen", g.getKanVerkopen());
-		if(g.getBankNummer() != null){
+		job.add("kanverkopen", g.getKanVerkopen());		
 		job.add("banknummer", g.getBankNummer());
-		}
-		else{
-			job.add("banknummer", "");
-		}
 		jab.add(job);
 	
 	JsonArray array = jab.build();
