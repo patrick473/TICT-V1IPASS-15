@@ -176,7 +176,7 @@ $("#updateForm").validate({
           Materialize.toast('Gegevens aangepast', 4000);
        });
 
-     setTimeout(window.location.replace("index.html"),1000);
+     setTimeout(window.location.replace("gebruikersgegevens.html"),1000);
    }
     });
 
