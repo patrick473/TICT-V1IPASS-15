@@ -153,7 +153,7 @@ function loadModal(voorwerpnummer) {
       $(data).each(function(index) {
           sessionStorage.setItem("hoogste", this.bodBedrag);
           console.log(sessionStorage.getItem("hoogste"));
-          hoogste = parseInt(sessionStorage.getItem("hoogste"));
+          hoogste = parseFloat(sessionStorage.getItem("hoogste"));
           console.log(hoogste);
           $("#biedingencollection").data('hoogste', this.bodBedrag);
           console.log($("#biedingencollection").data('hoogste'));
