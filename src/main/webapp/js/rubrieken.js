@@ -222,7 +222,7 @@ function loadModal(voorwerpnummer) {
                     sessionStorage.setItem("hoogste", this.bodBedrag);
 
                     console.log(sessionStorage.getItem("hoogste"));
-                    hoogste = parseInt(sessionStorage.getItem("hoogste"));
+                    hoogste = parseFloat(sessionStorage.getItem("hoogste").toFixed(2));
                     console.log(hoogste);
 
                     $("#biedingencollection").data('hoogste', this.bodBedrag);
@@ -299,10 +299,10 @@ $("#bodRegistratie").validate({
 
 });
 $("#registerBod").click(function(event) {
-    if (parseInt($("#bodBedrag").val())>$("#biedingencollection").data('hoogste')){
+    if (parseFloat($("#bodBedrag").toFixed(2).val())>$("#biedingencollection").data('hoogste')){
         Materialize.toast('Bod gedaan', 4000);
         var data = $("#bodRegistratie").serialize();
-        var bod = parseInt($("#bodBedrag").val());
+        var bod = parseFloat($("#bodBedrag").toFixed(2).val());
         event.preventDefault();
         console.log(sessionStorage);
         $.ajax({
