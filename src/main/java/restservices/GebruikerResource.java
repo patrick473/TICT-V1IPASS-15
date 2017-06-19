@@ -98,6 +98,9 @@ for (Gebruiker g: gdao.selectAll()){
 		if(g.getBankNummer() != null){
 		job.add("banknummer", g.getBankNummer());
 		}
+		else{
+			job.add("banknummer", "");
+		}
 		jab.add(job);
 	
 	JsonArray array = jab.build();
