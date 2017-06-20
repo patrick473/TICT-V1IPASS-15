@@ -11,3 +11,8 @@ else {
 }
   $(".prepage").addClass('hide');
 });
+ $("#uitlog").click(function(event) {
+     $('#uitlogpopup').modal();
+
+  $('#uitlogpopup').modal('open');
+ });
