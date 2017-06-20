@@ -111,7 +111,7 @@ $("#registerForm").validate({
            },
            email:{
                required: "Voer je email in.",
-               maxlength: "Een email mag maximaal tekens bevatten"
+               maxlength: "Een email mag maximaal 80 tekens bevatten"
            },
            telefoonnummer:{
                required: "Voer je telefoonnummer in.",

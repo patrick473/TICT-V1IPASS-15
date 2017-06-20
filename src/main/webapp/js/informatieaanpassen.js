@@ -130,7 +130,7 @@ $("#updateForm").validate({
            },
            email:{
                required: "Voer je email in.",
-               maxlength: "Een email mag maximaal tekens bevatten"
+               maxlength: "Een email mag maximaal 80 tekens bevatten"
            },
            telefoonnummer:{
                required: "Voer je telefoonnummer in.",
@@ -177,7 +177,7 @@ $("#updateForm").validate({
           Materialize.toast('Gegevens aangepast', 4000);
        });
 
-     setTimeout(window.location.replace("gebruikersgegevens.html"),1000);
+     setTimeout(window.location.replace("index.html"),1000);
    }
     });
 
