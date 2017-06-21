@@ -3,7 +3,7 @@ package model;
 import java.sql.Timestamp;
 
 public class Voorwerp {
-	
+	//attributen
 	private Integer voorwerpNummer;
 	private String titel;
 	private String beschrijving;
@@ -20,16 +20,8 @@ public class Voorwerp {
 	private Integer rubriek;
 	
 
-
-	public Voorwerp(Integer voorwerpNummer, Timestamp eindTijd, Integer koper, boolean veilingGesloten,
-			double verkoopprijs) {
-		super();
-		this.voorwerpNummer = voorwerpNummer;
-		this.eindTijd = eindTijd;
-		this.koper = koper;
-		this.veilingGesloten = veilingGesloten;
-		this.verkoopprijs = verkoopprijs;
-	}
+	
+	//constructor gebruikt bij insert dao
 	public Voorwerp(String titel, String beschrijving, double startPrijs, String betalingswijze, Timestamp beginTijd,
 			double verzendkosten, String verzendinstructie, Integer verkoper, boolean veilingGesloten,
 			Integer rubriek) {
@@ -45,6 +37,7 @@ public class Voorwerp {
 		this.veilingGesloten = veilingGesloten;
 		this.rubriek = rubriek;
 	}
+	//constructor gebruikt bij select dao
 	public Voorwerp(Integer voorwerpNummer, String titel, String beschrijving, double startPrijs, String betalingswijze,
 			Timestamp beginTijd, Timestamp eindTijd, double verzendkosten, String verzendinstructie, Integer verkoper,
 			Integer koper, boolean veilingGesloten, double verkoopprijs, Integer rubriek) {
@@ -64,6 +57,7 @@ public class Voorwerp {
 		this.verkoopprijs = verkoopprijs;
 		this.rubriek = rubriek;
 	}
+	//getters en setters
 	public double getVerkoopprijs() {
 		return verkoopprijs;
 	}
@@ -148,6 +142,7 @@ public class Voorwerp {
 	public void setRubriek(Integer rubriek) {
 		this.rubriek = rubriek;
 	}
+	//tostring
 	@Override
 	public String toString() {
 		return "Voorwerp [voorwerpNummer=" + voorwerpNummer + ", titel=" + titel + ", beschrijving=" + beschrijving

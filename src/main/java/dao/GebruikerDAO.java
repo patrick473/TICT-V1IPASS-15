@@ -12,12 +12,13 @@ import java.util.ArrayList;
 import model.Gebruiker;
 
 public class GebruikerDAO extends BaseDAO{
+	//wordt gebruikt voor alle select statements
 	private ArrayList<Gebruiker> selectGebruikers(String query){
 		ArrayList<Gebruiker> gebruikers = new ArrayList<Gebruiker>();
 		try(Connection con = super.getConnection()){
 			Statement stmt = con.createStatement();
 	ResultSet dbrs = stmt.executeQuery(query);
-	
+	//voor elke result wordt een nieuw object gemaakt
 	while (dbrs.next()){
 		int gebruikersId = dbrs.getInt("gebruikersid");
 		String gebruikersnaam = dbrs.getString("gebruikersnaam");
@@ -50,17 +51,19 @@ public class GebruikerDAO extends BaseDAO{
 	}
 		return gebruikers;
 	}
-
+//selecteert alles
 public ArrayList<Gebruiker> selectAll() {
 	return selectGebruikers("SELECT * FROM gebruiker");
 }
-
+//selecteert op gebruikersid
 public Gebruiker findByCode(int id) {
 	return selectGebruikers("SELECT * FROM gebruiker WHERE gebruikersid = " + id + "").get(0);
 }
+//selecteert op gebruikersnaam
 public Gebruiker findByUsername(String id) {
 	return selectGebruikers("SELECT * FROM gebruiker WHERE gebruikersnaam = '" + id + "'").get(0);
 }
+//update de gebruikerinfo
 public Gebruiker update(Gebruiker b) {
 	try (Connection con = super.getConnection()) {
 		PreparedStatement stmt = con.prepareStatement(
@@ -84,6 +87,7 @@ public Gebruiker update(Gebruiker b) {
 	
 	return findByCode(b.getGebruikersID());
 }
+//update password van gebruiker
 public Gebruiker updatePassword (Gebruiker b){
 	try (Connection con = super.getConnection()) {
 		PreparedStatement stmt = con.prepareStatement(
@@ -108,7 +112,7 @@ public Gebruiker updatePassword (Gebruiker b){
 	
 }
 
-
+//nieuwe gebruiker aanmaken
 public Gebruiker insert(Gebruiker b) {
 	try (Connection con = super.getConnection()) {
 		PreparedStatement stmt = con.prepareStatement(

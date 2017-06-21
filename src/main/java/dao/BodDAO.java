@@ -13,12 +13,13 @@ import java.util.ArrayList;
 import model.Bod;
 
 public class BodDAO extends BaseDAO{
+	//wordt gebruikt om alle select statements aan te maken
 	private ArrayList<Bod> selectBoden(String query){
 		ArrayList<Bod> bodlijst = new ArrayList<Bod>();
 		try(Connection con = super.getConnection()){
 			Statement stmt = con.createStatement();
 	ResultSet dbResultSet = stmt.executeQuery(query);
-	
+	//voor elke item in result wordt een object gemaakt en opgeslagen
 	while (dbResultSet.next()){
 		int bodId = dbResultSet.getInt("bodid");
 		int voorwerp = dbResultSet.getInt("voorwerp");
@@ -37,17 +38,19 @@ public class BodDAO extends BaseDAO{
 	}
 		return bodlijst;
 }
-
+//selecteert alles returnt een lijst
 public ArrayList<Bod> selectAll() {
 	return selectBoden("SELECT * FROM bod");
 }
-
+//selecteert alleen waar bodid = ? 
 public Bod findByCode(int id) {
 	return selectBoden("SELECT * FROM bod WHERE bodid = " + id + "").get(0);
 }
+//selecteert alle biedingen op een voorwerp van hoog naar laag
 public ArrayList<Bod> findByVoorwerp(int id) {
 	return selectBoden("SELECT * FROM bod WHERE voorwerp = " + id + " order by bodbedrag desc");
 }
+//selecteert het hoogste bod op een voorwerp
 public Bod findhighestBodByVoorwerp(int voorwerp) {
 	
 	ArrayList<Bod> a= selectBoden("select * from bod where voorwerp ="+voorwerp+" order by bodbedrag desc limit 1");
@@ -56,6 +59,7 @@ public Bod findhighestBodByVoorwerp(int voorwerp) {
 	}
 	else{ return null;}
 }
+//registreren nieuw bod
 public Bod insert(Bod b) {
 	try (Connection con = super.getConnection()) {
 		PreparedStatement stmt = con.prepareStatement(

@@ -14,7 +14,7 @@ public class BaseDAO {
 	private DataSource connectionPool;
 	
 	public BaseDAO() {
-	
+	//volgens mij nutteloos alleen verwijderen breekt mss hele boel
 		try {
 			final String DATABASE_URL_PROP = System.getenv("DATABASE_URL");
 			if (DATABASE_URL_PROP != null) {
@@ -38,7 +38,7 @@ public class BaseDAO {
 			throw new RuntimeException(e);
 		}
 	}
-	
+	//maakt een connectie met de database mits op heroku
 	protected static Connection getConnection() throws URISyntaxException, SQLException {
 	    URI dbUri = new URI(System.getenv("DATABASE_URL"));
 

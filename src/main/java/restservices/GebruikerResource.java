@@ -19,11 +19,15 @@ import model.Gebruiker;
 import dao.GebruikerDAO;
 @Path("/gebruiker")
 public class GebruikerResource {
-	
+	//DAO's worden aangemaakt
 	GebruikerDAO gdao = new GebruikerDAO();
 	JsonArrayBuilder jab = Json.createArrayBuilder();
 	JsonObjectBuilder job = Json.createObjectBuilder();
+	//formaat van datum
 	 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YY");
+	 
+	 //handelt GET request om alle gebruikers te selecteren
+	 //pad is restservices/gebruiker
 	@GET
 	//voor testen is dit opengelaten zie dit als @RolesAllowed({"verkoper","gebruiker"})
 	@Produces("application/json")
@@ -47,7 +51,9 @@ for (Gebruiker g: gdao.selectAll()){
 		return array.toString();
 		
 	}
-	
+	//handelt GET request om een specifieke gebruiker te selecteren
+	//alleen verkoper en gebruiker mogen dit
+	//pad is bv restservices/gebruiker/1
 	@GET
 	@RolesAllowed({"verkoper","gebruiker"})
 	@Path("/{id}")
@@ -77,6 +83,9 @@ for (Gebruiker g: gdao.selectAll()){
 	return array.toString();
 		
 	}
+//handelt GET request om een gebruiker op username te selecteren
+// alleen verkoper en gebruiker mogen dit
+// pad is bv. restservices/gebruiker/username/3
 @GET
 	@RolesAllowed({"verkoper","gebruiker"})
 	@Path("/username/{id}")
@@ -106,6 +115,10 @@ for (Gebruiker g: gdao.selectAll()){
 	return array.toString();
 		
 	}
+//handelt PUT request om gebruiker te updaten
+//alleen verkoper en gebruikers mogen dit
+// pad is bv restservices/gebruiker/2/true
+//data moet een updateform bevatten
 	@PUT
 	@RolesAllowed({"verkoper","gebruiker"})
 	@Path("/{id}/{kanverkopen}")
@@ -122,6 +135,11 @@ for (Gebruiker g: gdao.selectAll()){
 		gdao.update(g);
 		return null;
 	}
+	//handelt PUT request om wachtwoord te updaten
+	//alleen verkoper en gebruikers mogen dit
+	// pad is bv restservices/gebruiker/new/2
+	//data moet een passwordform bevatten
+	//wordt niet gebruikt
 	@PUT
 	
 	@Path("/password/{id}")
@@ -132,6 +150,10 @@ for (Gebruiker g: gdao.selectAll()){
 		
 		return null;
 	}
+	//handelt POST request om gebruiker te maken
+
+	// pad is bv restservices/gebruiker/true
+	//data moet een registerform bevatten
 	@POST
 
 	@Path("/new/{kanverkopen}")

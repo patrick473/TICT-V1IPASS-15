@@ -23,11 +23,17 @@ import model.Gebruiker;
 import model.Voorwerp;
 @Path("/bod")
 public class BodResource {
+	//dao's worden aangemaakt
 	BodDAO bdao = new BodDAO();
 	GebruikerDAO gdao = new GebruikerDAO();
 	VoorwerpDAO vdao = new VoorwerpDAO();
+	//json builder om requests te handelen
 	JsonArrayBuilder jab = Json.createArrayBuilder();
 	JsonObjectBuilder job = Json.createObjectBuilder();
+	
+	//handelt GET request om alle biedingen te krijgen
+	//alleen verkopers en gebruikers mogen dit
+	//pad is restservices/bod
 	@GET
 	@RolesAllowed({"verkoper","gebruiker"})
 	@Produces("application/json")
@@ -49,6 +55,9 @@ public class BodResource {
 
 
 
+//handelt GET request om specifiek bod te krijgen\
+//alleen verkopers en gebruikers mogen dit
+//pad is bv. restservices/bod/1
 
 		@GET
 		@RolesAllowed({"verkoper","gebruiker"})
@@ -68,7 +77,9 @@ public class BodResource {
 			return array.toString();
 			
 		}
-	
+//handelt GET request om bij een voorwerp alle biedingen te krijgen
+//alleen verkopers en gebruikers mogen dit
+//pad is bv. restservices/bod/voorwerp/1
 		@GET
 		@RolesAllowed({"verkoper","gebruiker"})
 		@Path("/voorwerp/{code}")
@@ -89,6 +100,9 @@ public class BodResource {
 			return array.toString();
 			
 		}
+//handelt GET request om het hoogste bod te krijgen van een voorwerp
+// alleen verkopers en gebruikers mogen dit
+//pad is bv. restservices/bod/voorwerp/hoogste/2
 @GET
 @RolesAllowed({"verkoper","gebruiker"})
 		@Path("/voorwerp/hoogste/{code}")
@@ -113,6 +127,10 @@ public class BodResource {
 			return array.toString();
 			}
 		}
+
+//handelt POST request om nieuw bod te registreren
+//alleen verkopers en gebruikers mogen dit
+//pad is bv. restservices/bod/1/2/99.99
 		@POST
 		@RolesAllowed({"verkoper","gebruiker"})
 		@Path("/{voorwerp}/{bieder}/{bod}")

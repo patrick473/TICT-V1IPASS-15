@@ -3,11 +3,10 @@ package model;
 import java.sql.Date;
 
 public class Gebruiker {
-
+	//attributen
 	private int gebruikersID;
 	private String gebruikersNaam;
 	private String voorNaam;
-
 	private String achterNaam;
 	private String adres ;
 	private String postCode;
@@ -20,14 +19,14 @@ public class Gebruiker {
 	private Boolean kanVerkopen;
 	private String bankNummer;
 	
-	
+	//constructor wordt niet gebruikt bedoeld voor wachtwoord veranderen
 	public Gebruiker(int gebruikersID, String wachtWoord) {
 		super();
 		this.gebruikersID = gebruikersID;
 		this.wachtWoord = wachtWoord;
 	}
 	
-
+	//constructor om gegevens te updaten
 	public Gebruiker(int gebruikersID, String adres, String postCode, String plaatsNaam, String land, String email,
 			int telefoonNummer, Boolean kanVerkopen, String bankNummer) {
 		super();
@@ -42,27 +41,7 @@ public class Gebruiker {
 		this.bankNummer = bankNummer;
 	}
 
-
-	public Gebruiker(int gebruikersID, String gebruikersNaam, String voorNaam,  String achterNaam,
-			String adres, String postCode, String plaatsNaam, String land, Date geboorteDag, String email,
-			int telefoonNummer, Boolean kanVerkopen, String bankNummer) {
-		super();
-		this.gebruikersID = gebruikersID;
-		this.gebruikersNaam = gebruikersNaam;
-		this.voorNaam = voorNaam;
-		
-		this.achterNaam = achterNaam;
-		this.adres = adres;
-		this.postCode = postCode;
-		this.plaatsNaam = plaatsNaam;
-		this.land = land;
-		this.geboorteDag = geboorteDag;
-		this.email = email;
-		this.telefoonNummer = telefoonNummer;
-		this.kanVerkopen = kanVerkopen;
-		this.bankNummer = bankNummer;
-	}
-
+	// constructor om nieuwe gebruiker aan te maken bij registratie
 	public Gebruiker(String gebruikersNaam, String voorNaam, String achterNaam, String adres,
 			String postCode, String plaatsNaam, String land, Date geboorteDag, String email, int telefoonNummer,
 			String wachtWoord, Boolean kanVerkopen, String bankNummer) {
@@ -82,7 +61,7 @@ public class Gebruiker {
 		this.kanVerkopen = kanVerkopen;
 		this.bankNummer = bankNummer;
 	}
-	
+	//constructor om gebruiker aan te maken om door te sturen bij select statements bij de dao's
 	public Gebruiker(Integer gebruikersID, String gebruikersNaam, String voorNaam, 
 			String achterNaam, String adres, String postcCode,String plaatsNaam, String land, Date geboorteDag, String email,
 			Integer telefoonNummer, String wachtWoord, Boolean kanVerkopen, String bankNummer) {
@@ -103,6 +82,7 @@ public class Gebruiker {
 		this.kanVerkopen = kanVerkopen;
 		this.bankNummer = bankNummer;
 	}
+	//getters and setters voor alle attributen
 	public int getGebruikersID() {
 		return gebruikersID;
 	}
@@ -189,6 +169,7 @@ public class Gebruiker {
 	public void setBankNummer(String bankNummer) {
 		this.bankNummer = bankNummer;
 	}
+	//tostring voor testen
 	@Override
 	public String toString() {
 		return "Gebruiker [gebruikersID=" + gebruikersID + ", gebruikersNaam=" + gebruikersNaam + ", voorNaam="

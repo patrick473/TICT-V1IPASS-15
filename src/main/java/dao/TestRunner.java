@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import model.*;
 public class TestRunner {
-
+//runt alle testen die nodig zijn
 	public static void main(String[] args) throws SQLException {
 		BaseDAO bdao = new BaseDAO();
 		GebruikerDAO gdao = new GebruikerDAO();

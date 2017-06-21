@@ -14,10 +14,15 @@ import model.Rubriek;
 
 @Path("/rubriek")
 public class RubriekResource {
+	//dao's aanmaken
+	
 	RubriekDAO rdao = new RubriekDAO();
 	JsonArrayBuilder jab = Json.createArrayBuilder();
 	JsonObjectBuilder job = Json.createObjectBuilder();
 	
+	
+	//handelt GET request voor elke rubriek
+	//pad is restservices/rubriek
 	@GET
 
 	@Produces("application/json")
@@ -33,6 +38,8 @@ public class RubriekResource {
 		JsonArray array = jab.build();
 		return array.toString();
 	}
+	//handelt GET request voor specifieke rubriek
+		//pad is restservices/rubriek/2
 	@GET
 	
 	@Path("/{code}")
@@ -48,7 +55,8 @@ public class RubriekResource {
 		return array.toString();
 		
 	}
-	
+	//handelt GET request voor bovenste rubrieken
+		//pad is restservices/rubriek/bovenste
 	@GET
 
 	@Path("/bovenste")
@@ -66,6 +74,8 @@ public class RubriekResource {
 		return array.toString();
 		
 	}
+	//handelt GET request voor elke rubriek onder een rubriek
+		//pad is restservices/rubriek/onder/2
 	@GET
 	
 	@Path("/onder/{code}")

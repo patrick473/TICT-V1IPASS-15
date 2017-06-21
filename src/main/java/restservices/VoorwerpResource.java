@@ -26,14 +26,16 @@ import dao.VoorwerpDAO;
 
 @Path("/voorwerp")
 public class VoorwerpResource {
-	
+	//dao's worden aangemaakt
 	VoorwerpDAO vdao = new VoorwerpDAO();
 	RubriekDAO rdao = new RubriekDAO();
 	BodDAO bdao = new BodDAO();
 	JsonArrayBuilder jab = Json.createArrayBuilder();
 	JsonObjectBuilder job = Json.createObjectBuilder();
 	
-	
+	//handelt GET request om alle voorwerpen te selecteren
+	//alleen verkopers en gebruikers mogen dit
+	//pad is restservices/voorwerp
 	@GET
 	@RolesAllowed({"verkoper","gebruiker"})
 	@Produces("application/json")
@@ -60,6 +62,9 @@ for (Voorwerp v: vdao.selectAll()){
 		return array.toString();
 		
 	}
+	//handelt GET request om een specifiek voorwerp te selecteren
+	//alleen verkopers en gebruikers mogen dit
+	//pad is bv. restservices/voorwerp/2
 	@GET
 	@RolesAllowed({"verkoper","gebruiker"})
 	@Path("/{id}")
@@ -89,6 +94,9 @@ for (Voorwerp v: vdao.selectAll()){
 	return array.toString();
 		
 	}
+	//handelt GET request om voorwerpen binnen een rubriek te vinden
+	//alleen verkopers en gebruikers mogen dit
+	//pad is bv. restservices/voorwerp/rubriek/35
 	@GET
 	@RolesAllowed({"verkoper","gebruiker"})
 	@Path("/rubriek/{rubriek}")
@@ -116,6 +124,9 @@ for (Voorwerp v: vdao.selectAll()){
 	return array.toString();
 		
 	}
+	//handelt GET request om actieve voorwerpen te selecteren van een gebruiker
+	//alleen verkopers mogen dit
+	//pad is bv. restservices/gebruiker/2
 @GET
 @RolesAllowed("verkoper")
 	@Path("/gebruiker/{id}")
@@ -143,6 +154,9 @@ for (Voorwerp v: vdao.selectAll()){
 	return array.toString();
 		
 	}
+//handelt GET request om gesloten voorwerpen te selecteren van een gebruiker
+	//alleen verkopers mogen dit
+	//pad is bv. restservices/gebruiker/gesloten/2
 @GET
 @RolesAllowed("verkoper")
 	@Path("/gebruiker/gesloten/{id}")
@@ -170,6 +184,11 @@ for (Voorwerp v: vdao.selectAll()){
 	return array.toString();
 		
 	}
+
+//handelt POST request om een nieuw voorwerp aan te maken
+//alleen verkopers mogen dit
+//pad is restservices/voorwerp/new
+//data moet registerform bevatten
 	@POST
 	@RolesAllowed("verkoper")
 	@Path("/new")
@@ -190,6 +209,9 @@ for (Voorwerp v: vdao.selectAll()){
 		vdao.insert(v);
 		return null;
 	}
+	//handelt PUT request om een veiling te beeindigen
+	//alleen verkopers mogen dit
+	//pad is bv. restservices.voorwerp/end/5
 	
 	@PUT
 	@RolesAllowed("verkoper")
@@ -210,6 +232,9 @@ for (Voorwerp v: vdao.selectAll()){
 			vdao.update(v1);
 		return null;
 	}
+	//handelt DELETE request om een veiling te verwijderen
+		//alleen verkopers mogen dit
+		//pad is bv. restservices.voorwerp/delete/5
 	@DELETE
 	@RolesAllowed("verkoper")
 	@Produces("application/json")
